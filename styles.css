@@ -1,0 +1,305 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2d5016;
+    --secondary-color: #8b4513;
+    --accent-color: #d4a574;
+    --text-color: #333;
+    --light-bg: #f5f0e8;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header and Navigation */
+.header {
+    background-color: var(--primary-color);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo h1 {
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero h2 {
+    color: var(--white);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+    color: var(--white);
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* About Section */
+.about {
+    padding: 80px 0;
+    background-color: var(--light-bg);
+}
+
+.about h2 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Tours Section */
+.tours {
+    padding: 80px 0;
+    background-color: var(--white);
+}
+
+.tours h2 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.tours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.tour-card {
+    background-color: var(--light-bg);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tour-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.tour-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.tour-card h3 {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.tour-card p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.tour-card ul {
+    list-style: none;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.tour-card li {
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tour-card li:last-child {
+    border-bottom: none;
+}
+
+/* Contact Section */
+.contact {
+    padding: 80px 0;
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.contact h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.contact-info p {
+    margin-bottom: 2rem;
+}
+
+.contact-details {
+    list-style: none;
+}
+
+.contact-details li {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-details li:last-child {
+    border-bottom: none;
+}
+
+.contact-details strong {
+    color: var(--accent-color);
+}
+
+/* Footer */
+.footer {
+    background-color: #1a3009;
+    color: var(--white);
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer p {
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .about h2,
+    .tours h2,
+    .contact h2 {
+        font-size: 2rem;
+    }
+
+    .tours-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Scroll offset for fixed header */
+section {
+    scroll-margin-top: 80px;
+}
