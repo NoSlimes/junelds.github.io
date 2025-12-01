@@ -145,6 +145,8 @@
             grid.innerHTML = '';
             Object.keys(toursData).forEach(id => {
                 const t = toursData[id];
+                // Skip tours that are marked as featured to avoid duplication
+                if (t && t.featured === true) return;
                 const art = document.createElement('article');
                 art.className = 'tour-card';
                 art.setAttribute('data-tour-id', t.id);
@@ -197,7 +199,7 @@
 
         await loadTours();
         renderTours();
-
+        renderFeatured();
         qsa('[data-action="close"]').forEach(el => el.addEventListener('click', closeModal));
 
         document.addEventListener('keydown', onKey);
@@ -297,6 +299,58 @@
 
             // start autoplay
             startAutoplay();
+        }
+
+        // Render featured tour (if a tour has "featured": true, use it; otherwise do not render the section)
+        function renderFeatured() {
+            const section = qs('#featured');
+            const holder = section ? qs('#featured .featured-inner') : null;
+            if (!section || !holder) return;
+            holder.innerHTML = '';
+            const all = Object.values(toursData || {});
+            if (!all.length) {
+                // No tours at all — remove featured section
+                section.remove();
+                return;
+            }
+            // Find only explicitly marked featured tour
+            const featured = all.find(t => t.featured === true);
+            if (!featured) {
+                // If none marked featured, remove the section entirely
+                section.remove();
+                return;
+            }
+
+            const card = document.createElement('article');
+            // Give featured card the same base styles/behavior as other tour cards
+            card.className = 'featured-card tour-card';
+            card.setAttribute('data-tour-id', featured.id);
+            card.setAttribute('tabindex', '0');
+
+            const img = document.createElement('img');
+            img.className = 'featured-image';
+            img.src = `media/${featured.image || (featured.id + '.jpg')}`;
+            img.alt = featured.title || '';
+
+            const content = document.createElement('div');
+            content.className = 'featured-content';
+            const h3 = document.createElement('h3');
+            h3.textContent = featured.title || '';
+            const p = document.createElement('p');
+            p.textContent = featured.summary || featured.description || '';
+
+            // Featured content: title + summary only (no separate "Läs mer" button)
+            content.appendChild(h3);
+            content.appendChild(p);
+
+            card.appendChild(img);
+            card.appendChild(content);
+
+            // open modal on click / keyboard
+            card.addEventListener('click', function (ev) { if (!ev.target.closest('a, button')) openModal(featured.id); });
+            card.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openModal(featured.id); } });
+
+            holder.appendChild(card);
         }
 
         // Lightbox implementation

@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Junelds - Upplev naturen från hästryggen eller med häst och vagn. Vi erbjuder turer för alla nivåer.">
+    <meta name="description"
+        content="Junelds - Upplev naturen från hästryggen eller med häst och vagn. Vi erbjuder turer för alla nivåer.">
     <title>Junelds — Med hästen som partner</title>
     <link rel="stylesheet" href="styles.css">
     <script src="components.js" defer></script>
 </head>
+
 <body>
     <header class="header">
         <nav class="nav">
@@ -27,11 +30,13 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-media">
-                    <img src="media/hero.jpg" alt="Junelds - hästridning i naturen" />
+                    <img src="media/Junelds Med Hästen Som Partner - Logotyp 1 (Ljus).svg"
+                        alt="Junelds - hästridning i naturen" />
                 </div>
                 <div class="hero-content">
                     <h2>Välkommen till Junelds</h2>
-                    <p>Upplev den småländska naturen från hästryggen eller bakom en trygg ardenner. Vi erbjuder ridning och turkörning i trolsk granskog.</p>
+                    <p>Upplev den småländska naturen från hästryggen eller bakom en trygg ardenner. Vi erbjuder ridning
+                        och turkörning i trolsk granskog.</p>
                     <a href="#turer" class="btn">Se våra turer</a>
                 </div>
             </div>
@@ -41,23 +46,37 @@
             <div class="container">
                 <h2>Om oss</h2>
                 <div class="about-content">
-                    <p>Vi på Junelds har en passion för hästar och den svenska naturen. Vårt stall ligger i hjärtat av Kårestad, omgivet av vackra skogar och ängar.</p>
-                    <p>Våra turer går främst på stigar genom härlig, trolsk granskog och på grusvägar. Den övergripande tanken är stillsamma, mysiga turer med främst skritt, men även lite trav och galopp efter önskemål för de mer erfarna.</p>
+                    <p>Vi på Junelds har en passion för hästar och den svenska naturen. Vårt stall ligger i hjärtat av
+                        Kårestad, omgivet av vackra skogar och ängar.</p>
+                    <p>Våra turer går främst på stigar genom härlig, trolsk granskog och på grusvägar. Den övergripande
+                        tanken är stillsamma, mysiga turer med främst skritt, men även lite trav och galopp efter
+                        önskemål för de mer erfarna.</p>
                 </div>
-                
+
+
                 <section id="turer" class="tours">
+                    <!-- Featured tour -->
+                    <div id="featured" class="featured">
+                        <div class="container">
+                            <h2 class="featured-heading">Utvald tur</h2>
+                            <div class="featured-inner" aria-live="polite">
+                                <p class="loading">Laddar utvald tur…</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <h2>Våra turer</h2>
-                
+
                     <div id="tours-grid" class="tours-grid" aria-live="polite">
                         <p class="loading">Laddar turer…</p>
                     </div>
                 </section>
-                </div>
+            </div>
 
-                <!-- Media gallery (images only; carousel + controls rendered by JS) -->
-                <div id="gallery" class="media-gallery">
-                    <div class="media-grid" aria-live="polite"></div>
-                </div>
+            <!-- Media gallery (images only; carousel + controls rendered by JS) -->
+            <div id="gallery" class="media-gallery">
+                <div class="media-grid" aria-live="polite"></div>
+            </div>
             </div>
         </section>
 
@@ -67,7 +86,8 @@
                 <div class="contact-content">
                     <div class="contact-info">
                         <h3>Boka din tur idag!</h3>
-                        <p>Vi ser fram emot att välkomna dig till Junelds. Fyll i formuläret nedan för att skicka en bokningsförfrågan via din e-postklient.</p>
+                        <p>Vi ser fram emot att välkomna dig till Junelds. Fyll i formuläret för att skicka en
+                            bokningsförfrågan via din e-postklient.</p>
                         <ul class="contact-details">
                             <li>
                                 <strong>Adress:</strong><br>
@@ -90,7 +110,8 @@
                             <label>Namn<br><input type="text" id="contact-name" placeholder="Ditt namn"></label>
                             <label>E-post<br><input type="email" id="contact-email" placeholder="din@mail.se"></label>
                             <label>Önskat datum/tid<br><input type="date" id="contact-date"></label>
-                            <label>Meddelande<br><textarea id="contact-message" rows="8" placeholder="Berätta vilken tur ni är intresserade av och hur många ni är."></textarea></label>
+                            <label>Meddelande<br><textarea id="contact-message" rows="8"
+                                    placeholder="Berätta vilken tur ni är intresserade av och hur många ni är."></textarea></label>
                             <div class="booking-actions">
                                 <button id="contact-send" class="btn" type="button">Skicka e-post</button>
                             </div>
@@ -103,8 +124,8 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Junelds. Alla rättigheter förbehållna.</p>
-            <p>Juneld Med hästen som partner</p>
+            <p>&copy; 2025 Junelds Med hästen som partner. Alla rättigheter förbehållna.</p>
+            <p>Junelds Med hästen som partner</p>
         </div>
     </footer>
 
@@ -121,4 +142,5 @@
         </div>
     </div>
 </body>
+
 </html>

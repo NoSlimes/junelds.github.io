@@ -1,4 +1,16 @@
 [
+   {
+    "id": "tomtetur",
+    "title": "Tomtetur",
+    "summary": "Vissa dagar i året så är jag en tomte. ",
+    "description": "TOMTE",
+    "details": [
+      "Längd: ",
+      "Pris: 100kr per barn",
+      "Krav: Inga"
+    ],
+    "featured": true
+  },
   {
     "id": "ravarundan",
     "title": "Rävarundan",
