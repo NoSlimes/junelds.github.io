@@ -1,22 +1,22 @@
-﻿[
-    {
-        "file":  "inkörning.jpg",
-        "alt":  "inkörning",
-        "caption":  "inkörning"
-    },
-    {
-        "file":  "runstensturen.jpg",
-        "alt":  "runstensturen",
-        "caption":  "runstensturen"
-    },
-    {
-        "file":  "skymningsturen.jpg",
-        "alt":  "skymningsturen",
-        "caption":  "skymningsturen"
-    },
-    {
-        "file":  "tomtekörning.jpg",
-        "alt":  "tomtekörning",
-        "caption":  "tomtekörning"
-    }
+[
+  {
+    "file": "inkörning.jpg",
+    "alt": "inkörning",
+    "caption": "inkörning"
+  },
+  {
+    "file": "runstensturen.jpg",
+    "alt": "runstensturen",
+    "caption": "runstensturen"
+  },
+  {
+    "file": "skymningsturen.jpg",
+    "alt": "skymningsturen",
+    "caption": "skymningsturen"
+  },
+  {
+    "file": "tomtekörning.jpg",
+    "alt": "tomtekörning",
+    "caption": "tomtekörning"
+  }
 ]
