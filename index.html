@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Junelds - Upplev naturen från hästryggen. Vi erbjuder ridturer för alla nivåer.">
+    <meta name="description" content="Junelds - Upplev naturen från hästryggen eller med häst och vagn. Vi erbjuder turer för alla nivåer.">
     <title>Junelds — Med hästen som partner</title>
     <link rel="stylesheet" href="styles.css">
     <script src="components.js" defer></script>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="hero-content">
                     <h2>Välkommen till Junelds</h2>
-                    <p>Upplev den svenska naturen från hästryggen. Vi erbjuder oförglömliga ridupplevelser för hela familjen.</p>
+                    <p>Upplev den småländska naturen från hästryggen eller bakom en trygg ardenner. Vi erbjuder ridning och turkörning i trolsk granskog.</p>
                     <a href="#turer" class="btn">Se våra turer</a>
                 </div>
             </div>
@@ -41,69 +41,22 @@
             <div class="container">
                 <h2>Om oss</h2>
                 <div class="about-content">
-                    <p>Vi på Junelds har en passion för hästar och den svenska naturen. Vårt stall ligger i hjärtat av Kårestad, omgivet av vackra skogar och ängar som är perfekta för ridturer.</p>
-                    <p>Med över 20 års erfarenhet erbjuder vi säkra och minnesvärda ridupplevelser för ryttare på alla nivåer - från nybörjare till erfarna ryttare. Våra välutbildade hästar och kunniga guider ser till att varje tur blir en fantastisk upplevelse.</p>
+                    <p>Vi på Junelds har en passion för hästar och den svenska naturen. Vårt stall ligger i hjärtat av Kårestad, omgivet av vackra skogar och ängar.</p>
+                    <p>Våra turer går främst på stigar genom härlig, trolsk granskog och på grusvägar. Den övergripande tanken är stillsamma, mysiga turer med främst skritt, men även lite trav och galopp efter önskemål för de mer erfarna.</p>
                 </div>
-            </div>
-        </section>
-
-        <section id="turer" class="tours">
-            <div class="container">
-                <h2>Våra turer</h2>
-                <div class="tours-grid">
-                    <article class="tour-card" data-tour-id="nyborjartur" tabindex="0">
-                        <img class="tour-image" src="media/nyborjartur.jpg" alt="Nybörjartur" />
-                        <div class="tour-icon" aria-hidden="true">🐴</div>
-                        <h3>Nybörjartur</h3>
-                        <p>Perfekt för dig som aldrig ridit förut. En lugn tur på snälla hästar med erfaren guide.</p>
-                        <ul>
-                            <li>Längd: 1 timme</li>
-                            <li>Pris: 400 kr</li>
-                            <li>Ålder: Från 6 år</li>
-                        </ul>
-                    </article>
-                    <article class="tour-card" data-tour-id="skogstur" tabindex="0">
-                        <img class="tour-image" src="media/skogstur.jpg" alt="Skogstur" />
-                        <div class="tour-icon" aria-hidden="true">🌲</div>
-                        <h3>Skogstur</h3>
-                        <p>En längre tur genom Kårestads vackra skogslandskap. Passar ryttare med viss erfarenhet.</p>
-                        <ul>
-                            <li>Längd: 2 timmar</li>
-                            <li>Pris: 700 kr</li>
-                            <li>Ålder: Från 10 år</li>
-                        </ul>
-                    </article>
-                    <article class="tour-card" data-tour-id="solnedgangstur" tabindex="0">
-                        <img class="tour-image" src="media/solnedgangstur.jpg" alt="Solnedgångstur" />
-                        <div class="tour-icon" aria-hidden="true">🌅</div>
-                        <h3>Solnedgångstur</h3>
-                        <p>Upplev solnedgången från hästryggen. En romantisk och avkopplande upplevelse.</p>
-                        <ul>
-                            <li>Längd: 2.5 timmar</li>
-                            <li>Pris: 850 kr</li>
-                            <li>Ålder: Från 12 år</li>
-                        </ul>
-                    </article>
-                    <article class="tour-card" data-tour-id="heldag" tabindex="0">
-                        <img class="tour-image" src="media/heldag.jpg" alt="Heldag i sadeln" />
-                        <div class="tour-icon" aria-hidden="true">⭐</div>
-                        <h3>Heldag i sadeln</h3>
-                        <p>En hel dag med ridning, lunch vid sjön och oförglömliga minnen. För erfarna ryttare.</p>
-                        <ul>
-                            <li>Längd: 6 timmar</li>
-                            <li>Pris: 1800 kr</li>
-                            <li>Ålder: Från 14 år</li>
-                        </ul>
-                    </article>
-                </div>
-
-                <!-- Media gallery placeholder: place media files in the `media/` folder -->
-                <div id="gallery" class="media-gallery">
-                    <h3>Media</h3>
-                    <p>Lägg till bilder och videor i mappen <code>media/</code>. Thumbnails visas här automatiskt när filer läggs till.</p>
-                    <div class="media-grid" aria-live="polite">
-                        <div class="media-placeholder">Lägg till filer i <code>media/</code></div>
+                
+                <section id="turer" class="tours">
+                    <h2>Våra turer</h2>
+                
+                    <div id="tours-grid" class="tours-grid" aria-live="polite">
+                        <p class="loading">Laddar turer…</p>
                     </div>
+                </section>
+                </div>
+
+                <!-- Media gallery (images only; carousel + controls rendered by JS) -->
+                <div id="gallery" class="media-gallery">
+                    <div class="media-grid" aria-live="polite"></div>
                 </div>
             </div>
         </section>
@@ -123,7 +76,7 @@
                             </li>
                             <li>
                                 <strong>Telefon:</strong><br>
-                                070-236 85 16
+                                Anna Juneld: 0702-368516
                             </li>
                             <li>
                                 <strong>E-post:</strong><br>
@@ -132,7 +85,17 @@
                         </ul>
                     </div>
 
-                    <!-- Kontaktformuläret är borttaget; "Boka nu" skrollar ner till denna sektion. -->
+                    <div class="contact-form-wrapper">
+                        <form id="contact-form" class="booking-form">
+                            <label>Namn<br><input type="text" id="contact-name" placeholder="Ditt namn"></label>
+                            <label>E-post<br><input type="email" id="contact-email" placeholder="din@mail.se"></label>
+                            <label>Önskat datum/tid<br><input type="date" id="contact-date"></label>
+                            <label>Meddelande<br><textarea id="contact-message" rows="8" placeholder="Berätta vilken tur ni är intresserade av och hur många ni är."></textarea></label>
+                            <div class="booking-actions">
+                                <button id="contact-send" class="btn" type="button">Skicka e-post</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -141,7 +104,7 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Junelds. Alla rättigheter förbehållna.</p>
-            <p>Följ oss på sociala medier för senaste nytt och erbjudanden.</p>
+            <p>Juneld Med hästen som partner</p>
         </div>
     </footer>
 

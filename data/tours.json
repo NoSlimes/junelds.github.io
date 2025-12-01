@@ -1,0 +1,68 @@
+[
+  {
+    "id": "ravarundan",
+    "title": "Rävarundan",
+    "summary": "Lugn 2,5‑timmars ridtur genom skog och stig.",
+    "description": "En ca 2,5 timmars ridtur, beroende på tempo. Denna runda kräver att ryttaren kan bemästra hästen självständigt i åtminstone skritt. Jag anpassar takten efter den minst kunnige ryttaren i gruppen.",
+    "details": [
+      "Längd: ca 2,5 timmar",
+      "Pris: 700 kr per person",
+      "Krav: Viss ridvana krävs"
+    ]
+  },
+  {
+    "id": "bergetrundan",
+    "title": "Bergetrundan",
+    "summary": "Medellång tur på ca 1,5 timmar med fina vyer.",
+    "description": "En ca 1,5 timmes ridtur, beroende på tempo. Kräver att ryttaren kan bemästra hästen självständigt i skritt. Vi rider tillsammans och anpassar takten.",
+    "details": [
+      "Längd: ca 1,5 timmar",
+      "Pris: 550 kr per person",
+      "Krav: Viss ridvana krävs"
+    ]
+  },
+  {
+    "id": "lilla-rundan",
+    "title": "Lilla Rundan",
+    "summary": "Kort och anpassningsbar 45‑minuters tur för alla nivåer.",
+    "description": "En ca 45 minuters ridtur. Denna runda är anpassningsbar så att den även passar den helt ovane ryttaren. Jag går då tillsammans med er. Givetvis kan även erfarna ryttare välja denna tur.",
+    "details": [
+      "Längd: ca 45 minuter",
+      "Pris: 400 kr per person",
+      "Krav: Inga (passar alla)"
+    ]
+  },
+  {
+    "id": "blandad-tur",
+    "title": "Blandad rid- och körtur",
+    "summary": "Kombinationstur: både ridning och vagn för sällskapet.",
+    "description": "Om man är flera personer som vill komma ut tillsammans! Upp till tre personer kan rida, resten av sällskapet åker med i vagn dragen av en ardenner. Viktgräns för ryttare är 130 kg (något lägre för oerfarna).",
+    "details": [
+      "Längd: ca 1,5 timmar",
+      "Pris: 2500 kr för hela sällskapet (upp till 9 pers)",
+      "Fördelning: 6 i vagnen, 3 på hästryggen"
+    ]
+  },
+  {
+    "id": "skymningsturen",
+    "title": "Skymningsturen",
+    "summary": "Sagolik skymningstur med historier och stämning.",
+    "description": "Går genom trolsk Småländsk granskog och bymiljö. Jag berättar om sägner och historier från bygden. Kanske får man se ett troll och man får höra var de huvudlösa kalvarna brukar synas om natten. (Går givetvis att boka dagtid också).",
+    "details": [
+      "Längd: ca 45 minuter",
+      "Pris: 1500 kr för hela sällskapet",
+      "Typ: Häst och vagn"
+    ]
+  },
+  {
+    "id": "runstensturen",
+    "title": "Runstensturen",
+    "summary": "Historisk tur förbi runstenen och småländska sevärdheter.",
+    "description": "Turen går genom bymiljö och trolsk granskog, förbi runstenen och man får höra om den sedan länge försvunna fornborgen, hällkistor, ättestupor och en mystisk vit häst som springer över fältet på natten.",
+    "details": [
+      "Längd: ca 1,5 timmar",
+      "Pris: 2500 kr för hela sällskapet",
+      "Kapacitet: 6 vuxna (eller motsvarande blandat med barn)"
+    ]
+  }
+]

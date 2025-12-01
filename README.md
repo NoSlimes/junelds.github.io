@@ -2,13 +2,6 @@
 
 Kort statisk webbplats för Junelds — "Med hästen som partner".
 
-Vad som lagts till i denna version:
-
-- Enhetlig sidrubrik och slogan (`Junelds`, "Med hästen som partner").
-- En återanvändbar modalkomponent (`components.js`) för visning av detaljer per tur.
-- Modal-stilar och tillgänglighetsstöd i `styles.css`.
-- En enkel media-mapp (`/media`) för bilder och videor samt instruktion i `media/README.md`.
-
 Hur man använder media:
 
 1. Lägg till bild- eller videofiler i mappen `media/`.

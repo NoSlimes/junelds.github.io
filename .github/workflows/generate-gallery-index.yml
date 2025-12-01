@@ -1,0 +1,36 @@
+name: Generate gallery index
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Run gallery index generator (PowerShell)
+        run: pwsh -NoProfile -NonInteractive -ExecutionPolicy Bypass -File .\\scripts\\generate-gallery-index.ps1
+
+      - name: Commit generated index if changed
+        if: always()
+        run: |
+          pwsh -NoProfile -Command "
+            git config user.name 'github-actions[bot]';
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com';
+            git add media/gallery/index.json;
+            $diff = git diff --staged --name-only;
+            if ([string]::IsNullOrWhiteSpace($diff)) { Write-Host 'No changes to commit'; exit 0 };
+            git commit -m 'chore: auto-generate media/gallery/index.json';
+            git push;
+          "
+        shell: pwsh
