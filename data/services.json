@@ -1,0 +1,35 @@
+[
+  {
+    "id": "inkorning",
+    "title": "Inkörning av ponny och häst",
+    "summary": "Professionell inkörning mot rockard eller vagn.",
+    "description": "Vi utbildar din häst. Det tar ca 2 månader för att få hästen körbar med rockard, och ca 2 månader till för fyrhjulsvagn. Vi uppdaterar löpande om träningen. Mot slutet är du som ägare med för att lära tillsammans. Du står för egen utrustning (sele, huvudlag etc). Grovfoder ingår, kraftfoder medtas.",
+    "price": "Inkvartering: 500 kr/vecka (inkl. moms) + Träning: 688 kr/tillfälle (inkl. moms). Antal tillfällen varierar (ca 2-5 ggr/vecka).",
+    "image": "inkorning2.jpg"
+  },
+  {
+    "id": "turkorning-event",
+    "title": "Turkörning & Event",
+    "summary": "Häst och vagn för utflykt, fest och andra tillfällen.",
+    "description": "Vi erbjuder turkörning med häst och vagn för alla typer av uppdrag, exempelvis bröllop. Vi skräddarsyr även blandade rid- och körturer för dig och dina nära.",
+    "price": "Skräddarsys efter dina önskemål",
+    "image": "turkorning_event.jpg"
+  },
+  {
+    "id": "arbetskorning",
+    "title": "Arbetskörning & Uppdrag",
+    "summary": "Praktiskt arbete med häst i skog och mark.",
+    "description": "Vi utför utkörning av ris eller ved samt andra uppdragskörningar efter önskemål. Inget uppdrag är för litet eller stort – endast fantasin sätter gränser.",
+    "price": "Kontakta oss för offert",
+    "image": "arbetskorning.jpg"
+  },
+  {
+    "id": "Utbildning-halsa-aktiviteter",
+    "title": "Utbildning, Hälsa & Aktiviteter",
+    "summary": "Ridning, körutbildning och sociala aktiviteter.",
+    "description": "Vi erbjuder turridning, körutbildning för dig som vill lära dig köra häst, samt aktiviteter för exempelvis HVB-hem eller besök med häst och vagn på äldreboenden. Även tjänsten 'Bara vara' – mys med häst efter dina behov.",
+    "price": "Enligt överenskommelse",
+    "image": "snel_hest.jpg",
+    "imageObjectPosition":"50% 30%"
+  }
+]

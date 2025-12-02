@@ -1,18 +1,32 @@
 [
-   {
-    "id": "tomtetur",
-    "title": "Tomtetur",
-    "summary": "Vissa dagar i året så är jag en tomte. ",
-    "description": "TOMTE",
+  {
+    "id": "tomteritt",
+    "title": "Tomten kommer till häst",
+    "summary": "Ett magiskt hembesök av ridande tomte.",
+    "description": "Hyr in en ridande tomte med ardennern Lukas! Tomten rider fram till dörren (där ni gärna får klappa hästen) och kommer sedan in för att dela ut julklappar. En nisse är med och håller hästen. Vi utgår från Kårestad och besöker byarna runtomkring (t.ex. Hovmantorp, Högstorp). Julklappar lämnas till oss i förväg.",
+    "featured": true,
     "details": [
-      "Längd: ",
-      "Pris: 100kr per barn",
-      "Krav: Inga"
-    ],
-    "featured": true
+      "Pris: 850 kr (bindande) | 250 kr återbetalas vid extrem halka - kommer då till fots",
+      "Område: Kårestad m. omnejd",
+      "Vid extrem halka: Tomten kommer till fots"
+    ]
+  },
+  {
+    "id": "tomtetur",
+    "image": "tomteritt.jpg",
+    "title": "Tomtetur – Spana efter tomtar",
+    "summary": "Häst och vagn i skogen för barnen.",
+    "description": "Följ med ut i den småländska granskogen och spana efter tomtar i lyktans sken! Vagnen rymmer 10 barn, vuxna är välkomna att följa med till fots. Turen är ca 3 km. Klä er varmt och lämna ficklampan hemma (tomtarna är skygga) – lyktor finns att låna.",
+    "featured": true,
+    "details": [
+      "Pris: 100 kr per barn",
+      "Längd: ca 3 km",
+      "Övrigt: Vuxna följer med till fots"
+    ]
   },
   {
     "id": "ravarundan",
+    "image": "ravarundan.jpg",
     "title": "Rävarundan",
     "summary": "Lugn 2,5‑timmars ridtur genom skog och stig.",
     "description": "En ca 2,5 timmars ridtur, beroende på tempo. Denna runda kräver att ryttaren kan bemästra hästen självständigt i åtminstone skritt. Jag anpassar takten efter den minst kunnige ryttaren i gruppen.",
@@ -20,10 +34,12 @@
       "Längd: ca 2,5 timmar",
       "Pris: 700 kr per person",
       "Krav: Viss ridvana krävs"
-    ]
+    ],
+    "imageTransform": "translateY(60px)"
   },
   {
     "id": "bergetrundan",
+    "image": "hastar2.jpg",
     "title": "Bergetrundan",
     "summary": "Medellång tur på ca 1,5 timmar med fina vyer.",
     "description": "En ca 1,5 timmes ridtur, beroende på tempo. Kräver att ryttaren kan bemästra hästen självständigt i skritt. Vi rider tillsammans och anpassar takten.",
@@ -35,6 +51,7 @@
   },
   {
     "id": "lilla-rundan",
+    "image": "detarenhunddarframme.jpg",
     "title": "Lilla Rundan",
     "summary": "Kort och anpassningsbar 45‑minuters tur för alla nivåer.",
     "description": "En ca 45 minuters ridtur. Denna runda är anpassningsbar så att den även passar den helt ovane ryttaren. Jag går då tillsammans med er. Givetvis kan även erfarna ryttare välja denna tur.",
@@ -42,10 +59,12 @@
       "Längd: ca 45 minuter",
       "Pris: 400 kr per person",
       "Krav: Inga (passar alla)"
-    ]
+    ],
+    "imageTransform": "translateY(20px)"
   },
   {
     "id": "blandad-tur",
+    "image": "blandad.jpg",
     "title": "Blandad rid- och körtur",
     "summary": "Kombinationstur: både ridning och vagn för sällskapet.",
     "description": "Om man är flera personer som vill komma ut tillsammans! Upp till tre personer kan rida, resten av sällskapet åker med i vagn dragen av en ardenner. Viktgräns för ryttare är 130 kg (något lägre för oerfarna).",
@@ -53,7 +72,8 @@
       "Längd: ca 1,5 timmar",
       "Pris: 2500 kr för hela sällskapet (upp till 9 pers)",
       "Fördelning: 6 i vagnen, 3 på hästryggen"
-    ]
+    ],
+    "imageTransform": "translateY(60px)"
   },
   {
     "id": "skymningsturen",

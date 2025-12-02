@@ -9,6 +9,111 @@
     
     // Här lagrar vi turerna när de laddats från JSON-filen
     let toursData = {};
+    // Här lagrar vi övriga tjänster
+    let servicesData = {};
+
+    // Hjälp: Lös ut en bild-URL från ett fält så att användaren kan ange
+    // - en enkel filnamn (t.ex. "tomteritt.jpg") -> prefixes with `media/`
+    // - en relative path starting with `media/` or `/` -> left as-is
+    // - a full URL (https://...) or protocol-relative (//...) or data: -> left as-is
+    function resolveImagePath(src) {
+        if (!src) return '';
+        // data: or absolute path
+        if (src.startsWith('data:') || src.startsWith('/') || src.startsWith('media/') || src.startsWith('//')) return src;
+        // protocol (http:, https:, etc.)
+        if (/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(src)) return src;
+        // otherwise treat as filename inside media/
+        return `media/${src}`;
+    }
+
+    // Apply optional image transform/style fields from JSON to an <img> element.
+    // Supported fields on the data object:
+    // - imageStyle: raw CSS string appended to the element (e.g. 'filter:grayscale(1);')
+    // - imageTransform: CSS transform string (e.g. 'scale(1.1) translateY(-10px)')
+    // - imageTransformOrigin: CSS transform-origin (e.g. '50% 30%')
+    // - imageObjectPosition: sets object-position (e.g. 'center 40%')
+    // - imageFit: sets object-fit (e.g. 'cover'|'contain')
+    // - imageScale, imageTranslateX/Y: convenience numeric/string values appended to transform
+    function applyImageTransforms(img, data) {
+        if (!img || !data) return;
+
+        if (typeof data.imageStyle === 'string' && data.imageStyle.trim()) {
+            // append raw style - be careful not to overwrite width/height classes
+            img.style.cssText += ';' + data.imageStyle;
+        }
+
+        if (typeof data.imageObjectPosition === 'string') img.style.objectPosition = data.imageObjectPosition;
+        if (typeof data.imageFit === 'string') img.style.objectFit = data.imageFit;
+        if (typeof data.imageTransformOrigin === 'string') img.style.transformOrigin = data.imageTransformOrigin;
+        if (typeof data.imageTransform === 'string') img.style.transform = data.imageTransform;
+        // If the user supplied a simple translateY in pixels (common for focal shift),
+        // some layouts clip transforms or they behave inconsistently. As a reliable
+        // fallback, convert `translateY(<n>px)` into an `object-position` adjustment
+        // after the image has loaded. This preserves the visual focal shift.
+        (function handleTranslateYFallback() {
+            try {
+                const m = typeof data.imageTransform === 'string' && data.imageTransform.match(/^translateY\(([-\d.]+)px\)$/);
+                if (!m) return;
+                const px = parseFloat(m[1]);
+                // on load compute relative shift and apply as object-position
+                function applyFallback() {
+                    try {
+                        const h = img.clientHeight || img.naturalHeight || 1;
+                        // percent shift relative to displayed height (positive px moves down, we invert)
+                        const percent = -(px / h) * 100;
+                        // center baseline (50%) shifted by percent
+                        const y = 50 + percent;
+                        img.style.objectPosition = `50% ${y}%`;
+                        // Preserve any scale() present in the computed transform so imageScale isn't lost
+                        try {
+                            const current = img.style.transform || '';
+                            const scaleMatch = current.match(/scale\(([^)]+)\)/);
+                            const preservedScale = scaleMatch ? `scale(${scaleMatch[1]})` : '';
+                            img.style.transform = preservedScale;
+                        } catch (e) {
+                            img.style.transform = '';
+                        }
+                    } catch (e) {}
+                }
+                if (img.complete && img.naturalHeight) applyFallback();
+                else img.addEventListener('load', applyFallback, { once: true });
+            } catch (e) {}
+        })();
+
+        // convenience numeric/string props that augment transform (appended)
+        let extraTransforms = '';
+        if (data.imageScale !== undefined) {
+            extraTransforms += ` scale(${data.imageScale})`;
+        }
+        if (data.imageTranslateX !== undefined || data.imageTranslateY !== undefined) {
+            const tx = data.imageTranslateX !== undefined ? data.imageTranslateX : 0;
+            const ty = data.imageTranslateY !== undefined ? data.imageTranslateY : 0;
+            extraTransforms += ` translate(${tx}px, ${ty}px)`;
+        }
+        if (extraTransforms) {
+            img.style.transform = (img.style.transform || '') + extraTransforms;
+        }
+
+        // expose as data-attr for debugging/testing
+        try {
+            if (data.imageTransform) img.dataset.imageTransform = data.imageTransform;
+            if (data.imageScale !== undefined) img.dataset.imageScale = String(data.imageScale);
+            if (data.imageTranslateY !== undefined) img.dataset.imageTranslateY = String(data.imageTranslateY);
+            // mark that we applied transforms
+            img.dataset.imageApplied = '1';
+            // attach human-readable id/title if available for debugging
+            if (data.id) img.dataset.imageFor = data.id;
+            else if (data.title) img.dataset.imageFor = data.title;
+            // verbose debug log
+            console.debug('applyImageTransforms', img.dataset.imageFor || '', {
+                imageTransform: data.imageTransform,
+                imageScale: data.imageScale,
+                imageTranslateY: data.imageTranslateY,
+                imageObjectPosition: data.imageObjectPosition,
+                imageFit: data.imageFit
+            });
+        } catch (e) {}
+    }
 
     // Funktion för att bygga HTML till modalen
     function buildTourDetailsHtml(data) {
@@ -17,8 +122,16 @@
             detailsHtml = '<ul>' + data.details.map(item => `<li>${item}</li>`).join('') + '</ul>';
         }
         return `
-            <div class="tour-description"><p>${data.description}</p></div>
-            <div class="tour-facts">${detailsHtml}</div>
+            <div class="modal-section modal-desc">
+                <h4>Beskrivning</h4>
+                <p>${data.description || ''}</p>
+            </div>
+            <hr class="modal-sep" />
+            <div class="modal-section modal-facts">
+                <h4>Pris & fakta</h4>
+                ${data.price ? `<p><strong>${data.price}</strong></p>` : ''}
+                ${detailsHtml}
+            </div>
         `;
     }
 
@@ -154,8 +267,10 @@
 
                 const img = document.createElement('img');
                 img.className = 'tour-image';
-                img.src = `media/${t.image}`;
+                img.src = resolveImagePath(t.image || (t.id + '.jpg'));
                 img.alt = t.title;
+                // allow JSON to control image transforms/positioning
+                applyImageTransforms(img, t);
 
                 const icon = document.createElement('div');
                 icon.className = 'tour-icon';
@@ -170,7 +285,6 @@
 
                 const ul = document.createElement('ul');
                 if (t.length) ul.appendChild(createLi('Längd: ' + t.length));
-                if (t.price) ul.appendChild(createLi('Pris: ' + t.price));
                 if (t.minAge) ul.appendChild(createLi('Ålder: ' + t.minAge));
 
                 art.appendChild(img);
@@ -195,10 +309,130 @@
             });
         }
 
+        // --- Services: load and render services from data/services.json ---
+        async function loadServices() {
+            try {
+                const res = await fetch('data/services.json');
+                if (!res.ok) throw new Error('Kunde inte läsa services.json');
+                const parsed = await res.json();
+                // Expecting an array of service objects
+                servicesData = {};
+                if (Array.isArray(parsed)) {
+                    parsed.forEach(item => {
+                        if (!item || !item.id) return;
+                        const summary = item.summary || (item.description ? (item.description.split('. ')[0] + '.') : '');
+                        servicesData[item.id] = Object.assign({ summary }, item);
+                    });
+                }
+            } catch (e) {
+                console.error('Fel vid laddning av services.json:', e);
+            }
+        }
+
+        function renderServices() {
+            const holder = qs('#services-list');
+            if (!holder) return;
+            holder.innerHTML = '';
+            const keys = Object.keys(servicesData || {});
+            if (!keys.length) {
+                holder.innerHTML = '<p>Inga tjänster hittades.</p>';
+                return;
+            }
+
+            const grid = document.createElement('div');
+            grid.className = 'tours-grid';
+
+            keys.forEach(id => {
+                const s = servicesData[id];
+                const art = document.createElement('article');
+                art.className = 'tour-card service-card';
+                art.setAttribute('data-service-id', s.id);
+                art.setAttribute('tabindex', '0');
+
+                // Image (match tour-card behavior)
+                const img = document.createElement('img');
+                img.className = 'tour-image';
+                img.src = resolveImagePath(s.image || (s.id + '.jpg'));
+                img.alt = s.title || '';
+                // allow JSON to control image transforms/positioning
+                applyImageTransforms(img, s);
+
+                const icon = document.createElement('div');
+                icon.className = 'tour-icon';
+                icon.setAttribute('aria-hidden', 'true');
+                icon.textContent = s.icon || '';
+
+                const h3 = document.createElement('h3');
+                h3.textContent = s.title || '';
+
+                const p = document.createElement('p');
+                p.textContent = s.summary || s.description || '';
+
+                art.appendChild(img);
+                art.appendChild(icon);
+                art.appendChild(h3);
+                art.appendChild(p);
+
+                art.addEventListener('click', function (ev) { if (!ev.target.closest('a, button')) openServiceModal(s.id); });
+                art.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openServiceModal(s.id); } });
+
+                grid.appendChild(art);
+            });
+
+            holder.appendChild(grid);
+        }
+
+        function buildServiceDetailsHtml(data) {
+            return `
+                    <div class="modal-section modal-desc">
+                        <h4>Beskrivning</h4>
+                        <p>${data.description || ''}</p>
+                    </div>
+                    <hr class="modal-sep" />
+                    <div class="modal-section modal-facts">
+                        <h4>Pris</h4>
+                        ${data.price ? '<p><strong>' + data.price + '</strong></p>' : '<p>Pris enligt offert</p>'}
+                    </div>
+                `;
+        }
+
+        function openServiceModal(key) {
+            const modal = qs('#modal');
+            const titleEl = qs('#modal-title');
+            const bodyEl = qs('#modal-body');
+            const data = servicesData[key];
+            if (!data) {
+                console.error(`Hittade ingen service för id: ${key}`);
+                return;
+            }
+
+            titleEl.textContent = data.title || '';
+            bodyEl.innerHTML = buildServiceDetailsHtml(data);
+
+            const modalBook = qs('#modal-book');
+            if (modalBook) {
+                const newBtn = modalBook.cloneNode(true);
+                modalBook.parentNode.replaceChild(newBtn, modalBook);
+                newBtn.addEventListener('click', function (ev) {
+                    ev.preventDefault();
+                    closeModal();
+                    fillContactForm(data.title || 'Tjänst');
+                });
+            }
+
+            modal.setAttribute('aria-hidden', 'false');
+            modal.classList.add('open');
+            modal.__lastFocus = document.activeElement;
+            const closeBtn = qs('.modal-close'); if (closeBtn) closeBtn.focus();
+            document.body.style.overflow = 'hidden';
+        }
+
         function createLi(text) { const li = document.createElement('li'); li.textContent = text; return li; }
 
         await loadTours();
+        await loadServices();
         renderTours();
+        renderServices();
         renderFeatured();
         qsa('[data-action="close"]').forEach(el => el.addEventListener('click', closeModal));
 
@@ -313,44 +547,57 @@
                 section.remove();
                 return;
             }
-            // Find only explicitly marked featured tour
-            const featured = all.find(t => t.featured === true);
-            if (!featured) {
+
+            // Find all tours explicitly marked as featured
+            const featuredList = all.filter(t => t.featured === true);
+            if (!featuredList.length) {
                 // If none marked featured, remove the section entirely
                 section.remove();
                 return;
             }
 
-            const card = document.createElement('article');
-            // Give featured card the same base styles/behavior as other tour cards
-            card.className = 'featured-card tour-card';
-            card.setAttribute('data-tour-id', featured.id);
-            card.setAttribute('tabindex', '0');
+            // Render featured items as a grid of featured-card elements (image left, content right)
+            const grid = document.createElement('div');
+            grid.className = 'featured-grid';
 
-            const img = document.createElement('img');
-            img.className = 'featured-image';
-            img.src = `media/${featured.image || (featured.id + '.jpg')}`;
-            img.alt = featured.title || '';
+            featuredList.forEach(feat => {
+                const card = document.createElement('article');
+                card.className = 'featured-card';
+                card.setAttribute('data-tour-id', feat.id);
+                card.setAttribute('tabindex', '0');
 
-            const content = document.createElement('div');
-            content.className = 'featured-content';
-            const h3 = document.createElement('h3');
-            h3.textContent = featured.title || '';
-            const p = document.createElement('p');
-            p.textContent = featured.summary || featured.description || '';
+                const img = document.createElement('img');
+                img.className = 'featured-image';
+                img.src = resolveImagePath(feat.image || (feat.id + '.jpg'));
+                img.alt = feat.title || '';
+                // allow JSON to control image transforms/positioning
+                applyImageTransforms(img, feat);
 
-            // Featured content: title + summary only (no separate "Läs mer" button)
-            content.appendChild(h3);
-            content.appendChild(p);
+                const content = document.createElement('div');
+                content.className = 'featured-content';
+                const h3 = document.createElement('h3');
+                h3.textContent = feat.title || '';
+                const p = document.createElement('p');
+                p.textContent = feat.summary || feat.description || '';
 
-            card.appendChild(img);
-            card.appendChild(content);
+                const ul = document.createElement('ul');
+                if (feat.length) ul.appendChild(createLi('Längd: ' + feat.length));
+                if (feat.minAge) ul.appendChild(createLi('Ålder: ' + feat.minAge));
 
-            // open modal on click / keyboard
-            card.addEventListener('click', function (ev) { if (!ev.target.closest('a, button')) openModal(featured.id); });
-            card.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openModal(featured.id); } });
+                content.appendChild(h3);
+                content.appendChild(p);
+                content.appendChild(ul);
 
-            holder.appendChild(card);
+                card.appendChild(img);
+                card.appendChild(content);
+
+                card.addEventListener('click', function (ev) { if (!ev.target.closest('a, button')) openModal(feat.id); });
+                card.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openModal(feat.id); } });
+
+                grid.appendChild(card);
+            });
+
+            holder.appendChild(grid);
         }
 
         // Lightbox implementation

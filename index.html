@@ -11,16 +11,20 @@
     <script src="components.js" defer></script>
 </head>
 
-<body>
+<body id="top">
     <header class="header">
         <nav class="nav">
-            <div class="logo">
-                <h1>Junelds</h1>
-                <p class="slogan">Med hästen som partner</p>
-            </div>
+            <a href="#top" class="logo" aria-label="Gå till toppen">
+                <img class="header-logo" src="media/logos/Junelds Med Hästen Som Partner - Logotyp 2 (Vit).png" alt="Junelds logotyp">
+                <div class="logo-text">
+                    <h1>Junelds</h1>
+                    <p class="slogan">Med hästen som partner</p>
+                </div>
+            </a>
             <ul class="nav-links">
                 <li><a href="#om-oss">Om oss</a></li>
-                <li><a href="#turer">Våra turer</a></li>
+                <li><a href="#turer">Våra aktiviteter</a></li>
+                <li><a href="#services">Övriga tjänster</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
             </ul>
         </nav>
@@ -30,7 +34,7 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-media">
-                    <img src="media/Junelds Med Hästen Som Partner - Logotyp 1 (Ljus).svg"
+                    <img src="media/logos/Junelds Med Hästen Som Partner - Logotyp 1 (Ljus).svg"
                         alt="Junelds - hästridning i naturen" />
                 </div>
                 <div class="hero-content">
@@ -53,24 +57,33 @@
                         önskemål för de mer erfarna.</p>
                 </div>
 
-
                 <section id="turer" class="tours">
                     <!-- Featured tour -->
                     <div id="featured" class="featured">
                         <div class="container">
-                            <h2 class="featured-heading">Utvald tur</h2>
+                            <h2 class="featured-heading">Utvalda aktiviteter</h2>
                             <div class="featured-inner" aria-live="polite">
                                 <p class="loading">Laddar utvald tur…</p>
                             </div>
                         </div>
                     </div>
 
-                    <h2>Våra turer</h2>
+                    <h2>Övriga aktiviteter</h2>
 
                     <div id="tours-grid" class="tours-grid" aria-live="polite">
                         <p class="loading">Laddar turer…</p>
                     </div>
                 </section>
+
+                <section id="services" class="about">
+                    <div class="container">
+                        <h2>Övriga tjänster</h2>
+                        <div id="services-list" aria-live="polite">
+                            <p class="loading">Laddar tjänster…</p>
+                        </div>
+                    </div>
+                </section>
+
             </div>
 
             <!-- Media gallery (images only; carousel + controls rendered by JS) -->
