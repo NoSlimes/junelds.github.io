@@ -434,6 +434,28 @@
         renderTours();
         renderServices();
         renderFeatured();
+        // Mobile nav toggle
+        (function initNavToggle(){
+            const toggle = qs('.nav-toggle');
+            const links = qs('.nav-links');
+            if (!toggle || !links) return;
+            toggle.addEventListener('click', function (){
+                const isOpen = links.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+            // Close menu when a link is clicked
+            qsa('.nav-links a').forEach(a => a.addEventListener('click', () => {
+                links.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+            }));
+            // Close on Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    links.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        })();
         qsa('[data-action="close"]').forEach(el => el.addEventListener('click', closeModal));
 
         document.addEventListener('keydown', onKey);
