@@ -1,8 +1,23 @@
 [
   {
+    "file": "arbetskorning.jpg",
+    "alt": "arbetskorning",
+    "caption": "arbetskorning"
+  },
+  {
+    "file": "hastar2.jpg",
+    "alt": "hastar2",
+    "caption": "hastar2"
+  },
+  {
     "file": "inkörning.jpg",
     "alt": "inkörning",
     "caption": "inkörning"
+  },
+  {
+    "file": "inkorning2.jpg",
+    "alt": "inkorning2",
+    "caption": "inkorning2"
   },
   {
     "file": "runstensturen.jpg",
@@ -15,8 +30,18 @@
     "caption": "skymningsturen"
   },
   {
+    "file": "snel_hest.jpg",
+    "alt": "snel hest",
+    "caption": "snel hest"
+  },
+  {
     "file": "tomteritt.jpg",
-    "alt": "tomtekörning",
-    "caption": "tomtekörning"
+    "alt": "tomteritt",
+    "caption": "tomteritt"
+  },
+  {
+    "file": "turkorning_event.jpg",
+    "alt": "turkorning event",
+    "caption": "turkorning event"
   }
 ]
