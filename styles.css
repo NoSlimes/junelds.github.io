@@ -582,10 +582,22 @@ section {
 .lightbox-content {
     max-width: 1100px;
     width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    /* center the content block in the viewport */
+    margin: 0 auto;
+    position: relative;
+    display: block;
 }
+.lightbox-stage {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+.lightbox-nav.lb-prev { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); }
+.lightbox-nav.lb-next { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); }
+.lightbox-caption { margin-top: 12px; }
 .lightbox-img {
     max-width: 100%;
     max-height: 80vh;
