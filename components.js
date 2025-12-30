@@ -258,8 +258,11 @@
             grid.innerHTML = '';
             Object.keys(toursData).forEach(id => {
                 const t = toursData[id];
-                // Skip tours that are marked as featured to avoid duplication
-                if (t && t.featured === true) return;
+                // Skip tours that are marked as featured or hidden
+                if (!t) return;
+                if (t.featured === true) return;
+                if (t.hidden === true) return;
+
                 const art = document.createElement('article');
                 art.className = 'tour-card';
                 art.setAttribute('data-tour-id', t.id);
@@ -344,6 +347,8 @@
 
             keys.forEach(id => {
                 const s = servicesData[id];
+                if (s && s.hidden === true) return;
+
                 const art = document.createElement('article');
                 art.className = 'tour-card service-card';
                 art.setAttribute('data-service-id', s.id);
@@ -570,8 +575,8 @@
                 return;
             }
 
-            // Find all tours explicitly marked as featured
-            const featuredList = all.filter(t => t.featured === true);
+            const featuredList = all.filter(t => t.featured === true && t.hidden !== true);
+
             if (!featuredList.length) {
                 // If none marked featured, remove the section entirely
                 section.remove();

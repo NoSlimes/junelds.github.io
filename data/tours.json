@@ -5,6 +5,7 @@
     "summary": "Ett magiskt hembesök av ridande tomte.",
     "description": "Hyr in en ridande tomte med ardennern Lukas! Tomten rider fram till dörren (där ni gärna får klappa hästen) och kommer sedan in för att dela ut julklappar. En nisse är med och håller hästen. Vi utgår från Kårestad och besöker byarna runtomkring (t.ex. Hovmantorp, Högstorp). Julklappar lämnas till oss i förväg.",
     "featured": false,
+    "hidden": true,
     "details": [
       "Pris: 850 kr (bindande) | 250 kr återbetalas vid extrem halka - kommer då till fots",
       "Område: Kårestad m. omnejd",
@@ -18,6 +19,7 @@
     "summary": "Häst och vagn i skogen för barnen.",
     "description": "Följ med ut i den småländska granskogen och spana efter tomtar i lyktans sken! Vagnen rymmer 10 barn, vuxna är välkomna att följa med till fots. Turen är ca 3 km. Klä er varmt och lämna ficklampan hemma (tomtarna är skygga) – lyktor finns att låna.",
     "featured": false,
+    "hidden": true,
     "details": [
       "Pris: 100 kr per barn",
       "Längd: ca 3 km",
