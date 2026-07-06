@@ -5,6 +5,31 @@
     function qs(selector, el = document) { return el.querySelector(selector); }
     function qsa(selector, el = document) { return Array.from(el.querySelectorAll(selector)); }
 
+    // Markdown-hjälpfunktion med fallback om marked inte laddats
+    function mdParse(text) {
+        if (!text) return '';
+        if (typeof marked !== 'undefined' && marked.parse) return marked.parse(text);
+        return text.replace(/\n/g, '<br>');
+    }
+    function mdParseInline(text) {
+        if (!text) return '';
+        if (typeof marked !== 'undefined' && marked.parseInline) return marked.parseInline(text);
+        if (typeof marked !== 'undefined' && marked.parse) return marked.parse(text, { inline: true });
+        return text;
+    }
+
+    // Slå upp pris från prislistan (single source of truth)
+    function lookupPrice(id) {
+        const list = window._priceListData || [];
+        for (const cat of list) {
+            if (!cat.items) continue;
+            for (const item of cat.items) {
+                if (item.id === id) return item.price || '';
+            }
+        }
+        return '';
+    }
+
     const bookingEmail = 'anna.juneld@gmail.com';
     
     // Här lagrar vi turerna när de laddats från JSON-filen
@@ -119,17 +144,18 @@
     function buildTourDetailsHtml(data) {
         let detailsHtml = '';
         if (data.details && Array.isArray(data.details)) {
-            detailsHtml = '<ul>' + data.details.map(item => `<li>${item}</li>`).join('') + '</ul>';
+            detailsHtml = '<ul>' + data.details.map(item => `<li>${mdParseInline(item)}</li>`).join('') + '</ul>';
         }
+        const price = lookupPrice(data.id);
         return `
             <div class="modal-section modal-desc">
                 <h4>Beskrivning</h4>
-                <p>${data.description || ''}</p>
+                ${mdParse(data.description || '')}
             </div>
             <hr class="modal-sep" />
             <div class="modal-section modal-facts">
                 <h4>Pris & fakta</h4>
-                ${data.price ? `<p><strong>${data.price}</strong></p>` : ''}
+                ${price ? `<p><strong>${mdParseInline(price)}</strong></p>` : ''}
                 ${detailsHtml}
             </div>
         `;
@@ -241,9 +267,11 @@
             }
 
             try {
-                const res = await fetch('data/tours.json');
-                if (!res.ok) throw new Error('Kunde inte läsa tours.json');
-                const parsed = await res.json();
+                const yamlLoaded = typeof jsyaml !== 'undefined';
+                const res = await fetch(yamlLoaded ? 'data/tours.yml' : 'data/tours.json');
+                if (!res.ok) throw new Error('Kunde inte läsa tours.yml');
+                const text = await res.text();
+                const parsed = yamlLoaded ? jsyaml.load(text) : JSON.parse(text);
                 if (Array.isArray(parsed)) processArray(parsed);
                 else if (typeof parsed === 'object' && parsed !== null) processObject(parsed);
                 else throw new Error('Okänt format i tours.json');
@@ -315,9 +343,11 @@
         // --- Services: load and render services from data/services.json ---
         async function loadServices() {
             try {
-                const res = await fetch('data/services.json');
-                if (!res.ok) throw new Error('Kunde inte läsa services.json');
-                const parsed = await res.json();
+                const yamlLoaded = typeof jsyaml !== 'undefined';
+                const res = await fetch(yamlLoaded ? 'data/services.yml' : 'data/services.json');
+                if (!res.ok) throw new Error('Kunde inte läsa services.yml');
+                const text = await res.text();
+                const parsed = yamlLoaded ? jsyaml.load(text) : JSON.parse(text);
                 // Expecting an array of service objects
                 servicesData = {};
                 if (Array.isArray(parsed)) {
@@ -388,15 +418,16 @@
         }
 
         function buildServiceDetailsHtml(data) {
+            const price = lookupPrice(data.id);
             return `
                     <div class="modal-section modal-desc">
                         <h4>Beskrivning</h4>
-                        <p>${data.description || ''}</p>
+                        ${mdParse(data.description || '')}
                     </div>
                     <hr class="modal-sep" />
                     <div class="modal-section modal-facts">
                         <h4>Pris</h4>
-                        ${data.price ? '<p><strong>' + data.price + '</strong></p>' : '<p>Pris enligt offert</p>'}
+                        ${price ? '<p><strong>' + mdParseInline(price) + '</strong></p>' : '<p>Pris enligt offert</p>'}
                     </div>
                 `;
         }
@@ -694,12 +725,62 @@
             if (e.key === 'ArrowRight') showLightbox(_lightboxState.index + 1);
         }
 
+        // --- Price list: load and render from data/price-list.yml ---
+        async function loadPriceList() {
+            try {
+                const yamlLoaded = typeof jsyaml !== 'undefined';
+                const res = await fetch(yamlLoaded ? 'data/price-list.yml' : 'data/price-list.json');
+                if (!res.ok) throw new Error('Kunde inte läsa price-list.yml');
+                const text = await res.text();
+                const parsed = yamlLoaded ? jsyaml.load(text) : JSON.parse(text);
+                window._priceListData = Array.isArray(parsed) ? parsed : [];
+            } catch (e) {
+                console.error('Fel vid laddning av prislista:', e);
+                window._priceListData = [];
+            }
+        }
+
+        function renderPriceList() {
+            const holder = qs('#price-list-content');
+            if (!holder) return;
+            const data = window._priceListData || [];
+            if (!data.length) {
+                holder.innerHTML = '<p>Ingen prislista tillgänglig.</p>';
+                return;
+            }
+
+            let html = '';
+            data.forEach(category => {
+                if (!category.items || !category.items.length) return;
+                html += `<div class="price-category">`;
+                html += `<h3>${mdParseInline(category.category || '')}</h3>`;
+                html += `<table class="price-table">`;
+                html += `<thead><tr><th>Aktivitet</th><th>Pris</th><th>Längd</th><th>Notering</th></tr></thead>`;
+                html += `<tbody>`;
+                category.items.forEach(item => {
+                    html += `<tr>`;
+                    html += `<td class="price-name">${mdParseInline(item.name || '')}</td>`;
+                    html += `<td class="price-amount">${mdParseInline(item.price || '')}</td>`;
+                    html += `<td class="price-duration">${mdParseInline(item.duration || '')}</td>`;
+                    html += `<td class="price-note">${mdParseInline(item.note || '')}</td>`;
+                    html += `</tr>`;
+                });
+                html += `</tbody></table>`;
+                html += `</div>`;
+            });
+
+            holder.innerHTML = html;
+        }
+
         (function loadGalleryIndex(){
             fetch('media/gallery/index.json', { cache: 'no-store' })
                 .then(res => { if (!res.ok) throw new Error('Ingen index'); return res.json(); })
                 .then(data => { if (Array.isArray(data) && data.length) renderGallery(data); })
                 .catch(()=>{});
         })();
+
+        await loadPriceList();
+        renderPriceList();
     });
 
 })();

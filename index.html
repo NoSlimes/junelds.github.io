@@ -8,6 +8,8 @@
         content="Junelds - Upplev naturen från hästryggen eller med häst och vagn. Vi erbjuder turer för alla nivåer.">
     <title>Junelds — Med hästen som partner</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
     <script src="components.js" defer></script>
 </head>
 
@@ -27,6 +29,7 @@
                 <li><a href="#om-oss">Om oss</a></li>
                 <li><a href="#turer">Våra aktiviteter</a></li>
                 <li><a href="#services">Övriga tjänster</a></li>
+                <li><a href="#prislista">Prislista</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
             </div>
@@ -91,6 +94,15 @@
             <div id="gallery" class="media-gallery">
                 <div class="media-grid" aria-live="polite"></div>
             </div>
+            </div>
+        </section>
+
+        <section id="prislista" class="pricing">
+            <div class="container">
+                <h2>Prislista</h2>
+                <div id="price-list-content" aria-live="polite">
+                    <p class="loading">Laddar prislista…</p>
+                </div>
             </div>
         </section>
 

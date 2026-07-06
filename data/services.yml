@@ -1,0 +1,68 @@
+- id: inkorning
+  title: "Inkörning av ponny och häst"
+  summary: "Professionell inkörning mot rockard eller vagn."
+  description: |
+    Vi utbildar din häst. Det tar ca 2 månader för att få hästen körbar med rockard, och ca 2 månader till för fyrhjulsvagn.
+
+    Vi uppdaterar löpande om träningen. Mot slutet är du som ägare med för att lära tillsammans.
+
+    Du står för egen utrustning (sele, huvudlag etc). Grovfoder ingår, kraftfoder medtas.
+  image: inkorning2.jpg
+
+- id: turkornin-event
+  title: "Turkörning & Event"
+  summary: "Häst och vagn för utflykt, fest och andra tillfällen."
+  description: |
+    Vi erbjuder turkörning med häst och vagn för alla typer av uppdrag, exempelvis bröllop.
+
+    Vi skräddarsyr även blandade rid- och körturer för dig och dina nära.
+  image: turkorning_event.jpg
+
+- id: brollopskorning
+  title: "Bröllopskörning"
+  summary: "Häst och vagn för er stora dag – sagolik bröllopsfärd."
+  description: |
+    Gör er bröllopsdag oförglömlig med en storslagen entré i häst och vagn!
+
+    Vi skräddarsyr efter era önskemål – från kyrkan till festlokalen, eller en romantisk tur för brudparet.
+
+    Lugna trygga hästar och erfaren kusk. Vi finns i Kårestad med omnejd.
+  image: s.jpg
+
+- id: arbetskorning
+  title: "Arbetskörning & Uppdrag"
+  summary: "Praktiskt arbete med häst i skog och mark."
+  description: |
+    Vi utför utkörning av ris eller ved samt andra uppdragskörningar efter önskemål.
+
+    Inget uppdrag är för litet eller stort – endast fantasin sätter gränser.
+  image: arbetskorning.jpg
+
+- id: Utbildning-halsa-aktiviteter
+  title: "Utbildning, Hälsa & Aktiviteter"
+  summary: "Ridning, körutbildning och sociala aktiviteter."
+  description: |
+    Vi erbjuder:
+    - **Körutbildning** för dig som vill lära dig köra häst
+    - **Uteritter** och aktiviteter för exempelvis HVB-hem
+    - **Besök** med häst och vagn på äldreboenden
+    - **"Bara vara"** – mys med häst efter dina behov
+  image: snel_hest.jpg
+  imageObjectPosition: "50% 30%"
+
+- id: ridgrupp
+  title: "Ridgrupper"
+  summary: "Ridning tillsammans i grupp - för dig som inte är sugen på ridhus"
+  description: |
+    Vi erbjuder ridgrupper under hösten (sept-okt) och våren (apr-maj), 1 ggr per vecka i 8 veckor.
+
+    Vi går igenom allt från skötsel till hur man rider hästen. All ridning sker ute i naturen.
+
+    Det finns 3 typer av grupper:
+    - **Grupp 1:** Kan skritta på egen hand, har ridit innan.
+    - **Grupp 2:** Kan trava självständigt i lättridning.
+    - **Grupp 3:** Kan galloppera självständigt.
+
+    Har du inte kunskap att skritta självständigt går det självklart bra att boka in privatlektion i förberedelse till ridgruppen.
+  image: 3hastar.jpg
+  imageObjectPosition: "50% 30%"
