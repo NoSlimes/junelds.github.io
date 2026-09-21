@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://junelds.com/sitemap.xml
