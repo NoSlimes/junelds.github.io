@@ -1,10 +1,6 @@
 # GENERATED FILE – do not edit.
 # Source: content/. Built by scripts/combine_content.py
 poster:
-  - title: Test
-    date: 2026-09-22
-    text: test e123123
-    hidden: false
   - title: Höstritt med värmande fika
     date: "2026-09-22"
     text: 'Följ med på en härlig höstritt – ca fyra timmar inklusive fikapaus med värmande fika.
