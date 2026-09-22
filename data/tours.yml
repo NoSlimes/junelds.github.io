@@ -1,99 +1,100 @@
-- id: tomteritt
-  title: "Tomten kommer till häst"
-  summary: "Ett magiskt hembesök av ridande tomte."
-  description: |
-    Hyr in en ridande tomte med ardennern Lukas! Tomten rider fram till dörren (där ni gärna får klappa hästen) och kommer sedan in för att dela ut julklappar.
+turer:
+  - id: tomteritt
+    title: "Tomten kommer till häst"
+    summary: "Ett magiskt hembesök av ridande tomte."
+    description: |
+      Hyr in en ridande tomte med ardennern Lukas! Tomten rider fram till dörren (där ni gärna får klappa hästen) och kommer sedan in för att dela ut julklappar.
 
-    En nisse är med och håller hästen. Vi utgår från Kårestad och besöker byarna runtomkring (t.ex. Hovmantorp, Högstorp). Julklappar lämnas till oss i förväg.
-  featured: false
-  hidden: true
-  details:
-    - "Område: Kårestad m. omnejd"
-    - "Vid extrem halka: Tomten kommer till fots"
+      En nisse är med och håller hästen. Vi utgår från Kårestad och besöker byarna runtomkring (t.ex. Hovmantorp, Högstorp). Julklappar lämnas till oss i förväg.
+    featured: false
+    hidden: true
+    details:
+      - "Område: Kårestad m. omnejd"
+      - "Vid extrem halka: Tomten kommer till fots"
 
-- id: tomtetur
-  image: tomteritt.jpg
-  title: "Tomtetur – Spana efter tomtar"
-  summary: "Häst och vagn i skogen för barnen."
-  description: |
-    Följ med ut i den småländska granskogen och spana efter tomtar i lyktans sken!
+  - id: tomtetur
+    image: tomteritt.jpg
+    title: "Tomtetur – Spana efter tomtar"
+    summary: "Häst och vagn i skogen för barnen."
+    description: |
+      Följ med ut i den småländska granskogen och spana efter tomtar i lyktans sken!
 
-    Vagnen rymmer 10 barn, vuxna är välkomna att följa med till fots. Turen är ca 3 km.
+      Vagnen rymmer 10 barn, vuxna är välkomna att följa med till fots. Turen är ca 3 km.
 
-    Klä er varmt och lämna ficklampan hemma (tomtarna är skygga) – lyktor finns att låna.
-  featured: false
-  hidden: true
-  details:
-    - "Längd: ca 3 km"
-    - "Övrigt: Vuxna följer med till fots"
+      Klä er varmt och lämna ficklampan hemma (tomtarna är skygga) – lyktor finns att låna.
+    featured: false
+    hidden: true
+    details:
+      - "Längd: ca 3 km"
+      - "Övrigt: Vuxna följer med till fots"
 
-- id: ravarundan
-  image: ravarundan.jpg
-  title: "Rävarundan"
-  summary: "Lugn 2,5‑timmars ridtur genom skog och stig."
-  description: |
-    En ca 2,5 timmars ridtur, beroende på tempo. Denna runda kräver att ryttaren kan bemästra hästen självständigt i åtminstone skritt.
+  - id: ravarundan
+    image: ravarundan.jpg
+    title: "Rävarundan"
+    summary: "Lugn 2,5‑timmars ridtur genom skog och stig."
+    description: |
+      En ca 2,5 timmars ridtur, beroende på tempo. Denna runda kräver att ryttaren kan bemästra hästen självständigt i åtminstone skritt.
 
-    Jag anpassar takten efter den minst kunnige ryttaren i gruppen.
-  details:
-    - "Längd: ca 2,5 timmar"
-    - "Krav: Viss ridvana krävs"
-  imageTransform: "translateY(60px)"
+      Jag anpassar takten efter den minst kunnige ryttaren i gruppen.
+    details:
+      - "Längd: ca 2,5 timmar"
+      - "Krav: Viss ridvana krävs"
+    imageTransform: "translateY(60px)"
 
-- id: bergetrundan
-  image: hastar2.jpg
-  title: "Bergetrundan"
-  summary: "Medellång tur på ca 1,5 timmar med fina vyer."
-  description: |
-    En ca 1,5 timmes ridtur, beroende på tempo. Kräver att ryttaren kan bemästra hästen självständigt i skritt.
+  - id: bergetrundan
+    image: hastar2.jpg
+    title: "Bergetrundan"
+    summary: "Medellång tur på ca 1,5 timmar med fina vyer."
+    description: |
+      En ca 1,5 timmes ridtur, beroende på tempo. Kräver att ryttaren kan bemästra hästen självständigt i skritt.
 
-    Vi rider tillsammans och anpassar takten.
-  details:
-    - "Längd: ca 1,5 timmar"
-    - "Krav: Viss ridvana krävs"
+      Vi rider tillsammans och anpassar takten.
+    details:
+      - "Längd: ca 1,5 timmar"
+      - "Krav: Viss ridvana krävs"
 
-- id: lilla-rundan
-  image: detarenhunddarframme.jpg
-  title: "Lilla Rundan"
-  summary: "Kort och anpassningsbar 45‑minuters tur för alla nivåer."
-  description: |
-    En ca 45 minuters ridtur. Denna runda är anpassningsbar så att den även passar den helt ovane ryttaren.
+  - id: lilla-rundan
+    image: detarenhunddarframme.jpg
+    title: "Lilla Rundan"
+    summary: "Kort och anpassningsbar 45‑minuters tur för alla nivåer."
+    description: |
+      En ca 45 minuters ridtur. Denna runda är anpassningsbar så att den även passar den helt ovane ryttaren.
 
-    Jag går då tillsammans med er. Givetvis kan även erfarna ryttare välja denna tur.
-  details:
-    - "Längd: ca 45 minuter"
-    - "Krav: Inga (passar alla)"
-  imageTransform: "translateY(20px)"
+      Jag går då tillsammans med er. Givetvis kan även erfarna ryttare välja denna tur.
+    details:
+      - "Längd: ca 45 minuter"
+      - "Krav: Inga (passar alla)"
+    imageTransform: "translateY(20px)"
 
-- id: blandad-tur
-  image: blandad.jpg
-  title: "Blandad rid- och körtur"
-  summary: "Kombinationstur: både ridning och vagn för sällskapet."
-  description: |
-    Om man är flera personer som vill komma ut tillsammans! Upp till tre personer kan rida, resten av sällskapet åker med i vagn dragen av en ardenner.
+  - id: blandad-tur
+    image: blandad.jpg
+    title: "Blandad rid- och körtur"
+    summary: "Kombinationstur: både ridning och vagn för sällskapet."
+    description: |
+      Om man är flera personer som vill komma ut tillsammans! Upp till tre personer kan rida, resten av sällskapet åker med i vagn dragen av en ardenner.
 
-    Viktgräns för ryttare är 130 kg (något lägre för oerfarna).
-  details:
-    - "Längd: ca 1,5 timmar"
-    - "Fördelning: 6 i vagnen, 3 på hästryggen"
-  imageTransform: "translateY(60px)"
+      Viktgräns för ryttare är 130 kg (något lägre för oerfarna).
+    details:
+      - "Längd: ca 1,5 timmar"
+      - "Fördelning: 6 i vagnen, 3 på hästryggen"
+    imageTransform: "translateY(60px)"
 
-- id: skymningsturen
-  title: "Skymningsturen"
-  summary: "Sagolik skymningstur med historier och stämning."
-  description: |
-    Går genom trolsk Småländsk granskog och bymiljö. Jag berättar om sägner och historier från bygden.
+  - id: skymningsturen
+    title: "Skymningsturen"
+    summary: "Sagolik skymningstur med historier och stämning."
+    description: |
+      Går genom trolsk Småländsk granskog och bymiljö. Jag berättar om sägner och historier från bygden.
 
-    Kanske får man se ett troll och man får höra var de huvudlösa kalvarna brukar synas om natten. (Går givetvis att boka dagtid också.)
-  details:
-    - "Längd: ca 45 minuter"
-    - "Typ: Häst och vagn"
+      Kanske får man se ett troll och man får höra var de huvudlösa kalvarna brukar synas om natten. (Går givetvis att boka dagtid också.)
+    details:
+      - "Längd: ca 45 minuter"
+      - "Typ: Häst och vagn"
 
-- id: runstensturen
-  title: "Runstensturen"
-  summary: "Historisk tur förbi runstenen och småländska sevärdheter."
-  description: |
-    Turen går genom bymiljö och trolsk granskog, förbi runstenen och man får höra om den sedan länge försvunna fornborgen, hällkistor, ättestupor och en mystisk vit häst som springer över fältet på natten.
-  details:
-    - "Längd: ca 1,5 timmar"
-    - "Kapacitet: 6 vuxna (eller motsvarande blandat med barn)"
+  - id: runstensturen
+    title: "Runstensturen"
+    summary: "Historisk tur förbi runstenen och småländska sevärdheter."
+    description: |
+      Turen går genom bymiljö och trolsk granskog, förbi runstenen och man får höra om den sedan länge försvunna fornborgen, hällkistor, ättestupor och en mystisk vit häst som springer över fältet på natten.
+    details:
+      - "Längd: ca 1,5 timmar"
+      - "Kapacitet: 6 vuxna (eller motsvarande blandat med barn)"

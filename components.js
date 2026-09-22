@@ -273,6 +273,7 @@
                 const text = await res.text();
                 const parsed = yamlLoaded ? jsyaml.load(text) : JSON.parse(text);
                 if (Array.isArray(parsed)) processArray(parsed);
+                else if (parsed && Array.isArray(parsed.turer)) processArray(parsed.turer);
                 else if (typeof parsed === 'object' && parsed !== null) processObject(parsed);
                 else throw new Error('Okänt format i tours.json');
             } catch (e) {
@@ -348,10 +349,11 @@
                 if (!res.ok) throw new Error('Kunde inte läsa services.yml');
                 const text = await res.text();
                 const parsed = yamlLoaded ? jsyaml.load(text) : JSON.parse(text);
-                // Expecting an array of service objects
+                // Expecting an array of service objects (or {tjanster: [...]} from Decap)
+                const list = Array.isArray(parsed) ? parsed : (parsed && parsed.tjanster);
                 servicesData = {};
-                if (Array.isArray(parsed)) {
-                    parsed.forEach(item => {
+                if (Array.isArray(list)) {
+                    list.forEach(item => {
                         if (!item || !item.id) return;
                         const summary = item.summary || (item.description ? (item.description.split('. ')[0] + '.') : '');
                         servicesData[item.id] = Object.assign({ summary }, item);
@@ -733,7 +735,7 @@
                 if (!res.ok) throw new Error('Kunde inte läsa price-list.yml');
                 const text = await res.text();
                 const parsed = yamlLoaded ? jsyaml.load(text) : JSON.parse(text);
-                window._priceListData = Array.isArray(parsed) ? parsed : [];
+                window._priceListData = Array.isArray(parsed) ? parsed : (parsed && Array.isArray(parsed.kategorier) ? parsed.kategorier : []);
             } catch (e) {
                 console.error('Fel vid laddning av prislista:', e);
                 window._priceListData = [];
@@ -781,7 +783,7 @@
                 if (!res.ok) throw new Error('Kunde inte läsa aktuellt.yml');
                 const text = await res.text();
                 const parsed = yamlLoaded ? jsyaml.load(text) : JSON.parse(text);
-                window._newsData = Array.isArray(parsed) ? parsed : [];
+                window._newsData = Array.isArray(parsed) ? parsed : (parsed && Array.isArray(parsed.poster) ? parsed.poster : []);
             } catch (e) {
                 console.error('Fel vid laddning av aktuellt:', e);
                 window._newsData = [];
