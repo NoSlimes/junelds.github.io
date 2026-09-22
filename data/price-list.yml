@@ -1,86 +1,92 @@
+# GENERERAD FIL – redigera inte manuellt.
+# Källa: content/ (redigeras via /admin). Byggs av scripts/combine_content.py
 kategorier:
-  - category: "Ridturer"
+  - category: Ridturer
     items:
       - id: ravarundan
-        name: "Rävarundan"
-        price: "700 kr/person"
-        duration: "ca 2,5 timmar"
+        name: Rävarundan
+        price: 700 kr/person
+        duration: ca 2,5 timmar
       - id: bergetrundan
-        name: "Bergetrundan"
-        price: "550 kr/person"
-        duration: "ca 1,5 timmar"
+        name: Bergetrundan
+        price: 550 kr/person
+        duration: ca 1,5 timmar
       - id: lilla-rundan
-        name: "Lilla Rundan"
-        price: "400 kr/person"
-        duration: "ca 45 min"
-        note: "Passar alla nivåer – även nybörjare"
+        name: Lilla Rundan
+        price: 400 kr/person
+        duration: ca 45 min
+        note: Passar alla nivåer – även nybörjare
       - id: blandad-tur
-        name: "Blandad rid- och körtur"
-        price: "2 500 kr/sällskap (upp till 9 pers)"
-        duration: "ca 1,5 timmar"
-        note: "6 i vagnen + 3 på hästryggen"
-
-  - category: "Körturer — häst och vagn"
+        name: Blandad rid- och körtur
+        price: 2 500 kr/sällskap (upp till 9 pers)
+        duration: ca 1,5 timmar
+        note: 6 i vagnen + 3 på hästryggen
+  - category: Körturer — häst och vagn
     items:
       - id: skymningsturen
-        name: "Skymningsturen"
-        price: "1 500 kr/sällskap"
-        duration: "ca 45 min"
-        note: "Med berättelser och sägner"
+        name: Skymningsturen
+        price: 1 500 kr/sällskap
+        duration: ca 45 min
+        note: Med berättelser och sägner
       - id: runstensturen
-        name: "Runstensturen"
-        price: "2 500 kr/sällskap"
-        duration: "ca 1,5 timmar"
-        note: "6 vuxna (eller motsvarande blandat med barn)"
+        name: Runstensturen
+        price: 2 500 kr/sällskap
+        duration: ca 1,5 timmar
+        note: 6 vuxna (eller motsvarande blandat med barn)
       - id: tomtetur
-        name: "Tomtetur – Spana efter tomtar"
-        price: "100 kr/barn"
-        duration: "ca 3 km"
-        note: "Vuxna följer med till fots. Säsong."
+        name: Tomtetur – Spana efter tomtar
+        price: 100 kr/barn
+        duration: ca 3 km
+        note: Vuxna följer med till fots. Säsong.
       - id: tomteritt
-        name: "Tomten kommer till häst"
-        price: "850 kr (bindande)"
-        note: "Ställs in vid extrem halka. Säsong."
-
-  - category: "Tjänster"
+        name: Tomten kommer till häst
+        price: 850 kr (bindande)
+        note: Ställs in vid extrem halka. Säsong.
+  - category: Tjänster
     items:
       - id: inkorning
-        name: "Inkörning av ponny och häst"
-        price: |
-          Inkvartering: **500 kr/vecka** (inkl. moms)
-          Träning: **688 kr/tillfälle** (inkl. moms)
-        note: |
-          Ca 2–5 tillfällen/vecka i ca 2 månader.
-          Kraftfoder medtas, grovfoder ingår.
-      - id: turkornin-event
-        name: "Turkörning & Event"
-        price: "Skräddarsys efter dina önskemål"
-        note: "Bröllop, utflykter, fester m.m."
-      - id: brollopskorning
-        name: "Bröllopskörning"
-        price: |
-          5 000 kr **första timmen**
-          + 1 000 kr **per påbörjad timme**
-          + 25 kr × 2/mil (tur och retur)
-        note: "Skräddarsys efter era önskemål"
-      - id: arbetskorning
-        name: "Arbetskörning & Uppdrag"
-        price: "Kontakta oss för offert"
-        note: "Riskörning, vedutkörning m.m."
-      - id: Utbildning-halsa-aktiviteter
-        name: "Utbildning, Hälsa & Aktiviteter"
-        price: "Kontakta oss för offert"
-        note: "Körutbildning, uteritter, HVB-besök, 'Bara vara'"
-      - id: ridgrupp
-        name: "Ridgrupper"
-        price: "2 500 kr per termin (vår/höst)"
-        note: "8 veckor, 1 ggr/vecka."
+        name: Inkörning av ponny och häst
+        price: 'Inkvartering: **500 kr/vecka** (inkl. moms)
 
-  - category: "Lektioner"
+          Träning: **688 kr/tillfälle** (inkl. moms)
+
+          '
+        note: 'Ca 2–5 tillfällen/vecka i ca 2 månader.
+
+          Kraftfoder medtas, grovfoder ingår.
+
+          '
+      - id: turkornin-event
+        name: Turkörning & Event
+        price: Skräddarsys efter dina önskemål
+        note: Bröllop, utflykter, fester m.m.
+      - id: brollopskorning
+        name: Bröllopskörning
+        price: '5 000 kr **första timmen**
+
+          + 1 000 kr **per påbörjad timme**
+
+          + 25 kr × 2/mil (tur och retur)
+
+          '
+        note: Skräddarsys efter era önskemål
+      - id: arbetskorning
+        name: Arbetskörning & Uppdrag
+        price: Kontakta oss för offert
+        note: Riskörning, vedutkörning m.m.
+      - id: Utbildning-halsa-aktiviteter
+        name: Utbildning, Hälsa & Aktiviteter
+        price: Kontakta oss för offert
+        note: Körutbildning, uteritter, HVB-besök, 'Bara vara'
+      - id: ridgrupp
+        name: Ridgrupper
+        price: 2 500 kr per termin (vår/höst)
+        note: 8 veckor, 1 ggr/vecka.
+  - category: Lektioner
     items:
       - id: ridlektion
-        name: "Ridlektion"
-        price: "350 kr/timme"
+        name: Ridlektion
+        price: 350 kr/timme
       - id: korlektion
-        name: "Körlektion"
-        price: "350 kr/timme"
+        name: Körlektion
+        price: 350 kr/timme

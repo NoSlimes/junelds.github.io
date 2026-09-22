@@ -1,0 +1,9 @@
+ordning: 40
+category: Lektioner
+items:
+- id: ridlektion
+  name: Ridlektion
+  price: 350 kr/timme
+- id: korlektion
+  name: Körlektion
+  price: 350 kr/timme

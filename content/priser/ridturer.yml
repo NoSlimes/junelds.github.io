@@ -1,0 +1,21 @@
+ordning: 10
+category: Ridturer
+items:
+- id: ravarundan
+  name: Rävarundan
+  price: 700 kr/person
+  duration: ca 2,5 timmar
+- id: bergetrundan
+  name: Bergetrundan
+  price: 550 kr/person
+  duration: ca 1,5 timmar
+- id: lilla-rundan
+  name: Lilla Rundan
+  price: 400 kr/person
+  duration: ca 45 min
+  note: Passar alla nivåer – även nybörjare
+- id: blandad-tur
+  name: Blandad rid- och körtur
+  price: 2 500 kr/sällskap (upp till 9 pers)
+  duration: ca 1,5 timmar
+  note: 6 i vagnen + 3 på hästryggen

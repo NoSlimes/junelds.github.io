@@ -1,0 +1,22 @@
+ordning: 20
+category: Körturer — häst och vagn
+items:
+- id: skymningsturen
+  name: Skymningsturen
+  price: 1 500 kr/sällskap
+  duration: ca 45 min
+  note: Med berättelser och sägner
+- id: runstensturen
+  name: Runstensturen
+  price: 2 500 kr/sällskap
+  duration: ca 1,5 timmar
+  note: 6 vuxna (eller motsvarande blandat med barn)
+- id: tomtetur
+  name: Tomtetur – Spana efter tomtar
+  price: 100 kr/barn
+  duration: ca 3 km
+  note: Vuxna följer med till fots. Säsong.
+- id: tomteritt
+  name: Tomten kommer till häst
+  price: 850 kr (bindande)
+  note: Ställs in vid extrem halka. Säsong.

@@ -1,13 +1,18 @@
 # Decap CMS – innehållseditor för Junelds (junelds.com/admin)
 #
+# Så funkar det:
+# - Varje tur / tjänst / nyhet / priskategori är en egen fil under content/.
+#   Det ger en platt editor: samling -> post, utan mellannivåer.
+# - Vid sparning bygger en GitHub Action ihop content/ till data/*.yml
+#   (scripts/combine_content.py). Sidan läser bara data/ och märker ingen
+#   skillnad. data/*.yml är GENERERADE – redigera dem aldrig för hand.
+#
 # VIKTIGT:
-# - Decap skriver om hela filen vid sparning. Kommentarer (# ...) i yml-filerna
-#   försvinner vid första sparning – all vägledning ska därför stå här som
-#   "hint" i formulären, inte som kommentarer i datafilerna.
-# - Fält som finns i datafilerna MÅSTE finnas med här, annars raderas de
-#   vid sparning (t.ex. imageTransform, imageObjectPosition).
-# - Ändra aldrig "id" på en befintlig post – det används för priskoppling
-#   och bildnamn.
+# - Fält som finns i content-filerna MÅSTE finnas med här, annars raderas
+#   de vid sparning (t.ex. imageTransform, imageObjectPosition).
+# - Ändra aldrig "id" på en befintlig post – det används för priskoppling.
+# - Filnamnen under content/ spelar ingen roll för sidan (de genereras
+#   från rubriken och kan bytas vid sparning).
 
 backend:
   name: github
@@ -23,7 +28,6 @@ local_backend: true
 
 site_url: https://junelds.com
 display_url: https://junelds.com
-locale: sv
 
 media_folder: "media"
 public_folder: "media"
@@ -33,129 +37,140 @@ collections:
     label: "Aktuellt"
     label_singular: "Nyhet"
     description: "Nyheter på startsidan. Sektionen döljs automatiskt när inget är synligt."
-    files:
-      - name: "poster"
-        label: "Nyheter"
-        file: "data/aktuellt.yml"
-        fields:
-          - name: "poster"
-            label: "Nyheter"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields:
-              - { name: "title", label: "Rubrik", widget: "string" }
-              - name: "date"
-                label: "Datum"
-                widget: "datetime"
-                required: false
-                date_format: "YYYY-MM-DD"
-                time_format: false
-                hint: "Visas som snyggt datum. Lämna tomt om inget datum ska visas."
-              - name: "text"
-                label: "Brödtext"
-                widget: "markdown"
-                required: false
-                hint: "Tom rad = nytt stycke. **fet**, punktlista med '- '."
-              - name: "hidden"
-                label: "Dold (utkast)"
-                widget: "boolean"
-                required: false
-                default: false
-                hint: "På = syns inte på sidan. Sektionen döljs när allt är dolt."
+    folder: "content/aktuellt"
+    extension: "yml"
+    format: "yml"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: ["ordning", "title"]
+    fields:
+      - { name: "title", label: "Rubrik", widget: "string" }
+      - name: "ordning"
+        label: "Ordning"
+        widget: "number"
+        default: 10
+        hint: "Lägre nummer visas först. Befintliga ligger på 10, 20, 30 …"
+      - name: "date"
+        label: "Datum"
+        widget: "datetime"
+        required: false
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        hint: "Visas som snyggt datum. Lämna tomt om inget datum ska visas."
+      - name: "text"
+        label: "Brödtext"
+        widget: "markdown"
+        required: false
+        hint: "Tom rad = nytt stycke. **fet**, punktlista med '- '."
+      - name: "hidden"
+        label: "Dold (utkast)"
+        widget: "boolean"
+        required: false
+        default: false
+        hint: "På = syns inte på sidan. Sektionen döljs när allt är dolt."
 
   - name: "turer"
     label: "Turer"
     label_singular: "Tur"
     description: "Rid- och körturer. 'Utvald' visas överst, 'dold' syns ingenstans."
-    files:
-      - name: "turer"
-        label: "Turer"
-        file: "data/tours.yml"
-        fields:
-          - name: "turer"
-            label: "Turer"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields:
-              - name: "id"
-                label: "ID"
-                widget: "string"
-                hint: "ÄNDRA ALDRIG på befintlig tur! Används för pris och bild."
-              - { name: "title", label: "Titel", widget: "string" }
-              - { name: "summary", label: "Sammanfattning (kort)", widget: "text", required: false }
-              - { name: "description", label: "Beskrivning", widget: "markdown", required: false }
-              - { name: "image", label: "Bild", widget: "image", required: false, allow_multiple: false }
-              - name: "details"
-                label: "Faktarader"
-                widget: "list"
-                required: false
-                field: { name: "rad", label: "Rad", widget: "string" }
-                hint: "T.ex. 'Längd: ca 1,5 timmar'. Visas i popupen."
-              - { name: "featured", label: "Utvald (visas överst)", widget: "boolean", required: false, default: false }
-              - { name: "hidden", label: "Dold", widget: "boolean", required: false, default: false }
-              - name: "imageTransform"
-                label: "Bildjustering (avancerat)"
-                widget: "string"
-                required: false
-                hint: "Rör ej om du inte vet vad det gör, t.ex. translateY(60px)."
+    folder: "content/turer"
+    extension: "yml"
+    format: "yml"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: ["ordning", "title"]
+    fields:
+      - { name: "title", label: "Titel", widget: "string" }
+      - name: "ordning"
+        label: "Ordning"
+        widget: "number"
+        default: 100
+        hint: "Lägre nummer visas först."
+      - name: "id"
+        label: "ID"
+        widget: "string"
+        hint: "ÄNDRA ALDRIG på befintlig tur! Används för pris och bild."
+      - { name: "summary", label: "Sammanfattning (kort)", widget: "text", required: false }
+      - { name: "description", label: "Beskrivning", widget: "markdown", required: false }
+      - { name: "image", label: "Bild", widget: "image", required: false, allow_multiple: false }
+      - name: "details"
+        label: "Faktarader"
+        widget: "list"
+        required: false
+        field: { name: "rad", label: "Rad", widget: "string" }
+        hint: "T.ex. 'Längd: ca 1,5 timmar'. Visas i popupen."
+      - { name: "featured", label: "Utvald (visas överst)", widget: "boolean", required: false, default: false }
+      - { name: "hidden", label: "Dold", widget: "boolean", required: false, default: false }
+      - name: "imageTransform"
+        label: "Bildjustering (avancerat)"
+        widget: "string"
+        required: false
+        hint: "Rör ej om du inte vet vad det gör, t.ex. translateY(60px)."
 
   - name: "tjanster"
     label: "Övriga tjänster"
     label_singular: "Tjänst"
     description: "Tjänster som inkörning, bröllopskörning och ridgrupper."
-    files:
-      - name: "tjanster"
-        label: "Tjänster"
-        file: "data/services.yml"
-        fields:
-          - name: "tjanster"
-            label: "Tjänster"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields:
-              - name: "id"
-                label: "ID"
-                widget: "string"
-                hint: "ÄNDRA ALDRIG på befintlig tjänst! Används för priskoppling."
-              - { name: "title", label: "Titel", widget: "string" }
-              - { name: "summary", label: "Sammanfattning (kort)", widget: "text", required: false }
-              - { name: "description", label: "Beskrivning", widget: "markdown", required: false }
-              - { name: "image", label: "Bild", widget: "image", required: false, allow_multiple: false }
-              - { name: "hidden", label: "Dold", widget: "boolean", required: false, default: false }
-              - name: "imageObjectPosition"
-                label: "Bildfokus (avancerat)"
-                widget: "string"
-                required: false
-                hint: "Rör ej om du inte vet vad det gör, t.ex. 50% 30%."
+    folder: "content/tjanster"
+    extension: "yml"
+    format: "yml"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: ["ordning", "title"]
+    fields:
+      - { name: "title", label: "Titel", widget: "string" }
+      - name: "ordning"
+        label: "Ordning"
+        widget: "number"
+        default: 100
+        hint: "Lägre nummer visas först."
+      - name: "id"
+        label: "ID"
+        widget: "string"
+        hint: "ÄNDRA ALDRIG på befintlig tjänst! Används för priskoppling."
+      - { name: "summary", label: "Sammanfattning (kort)", widget: "text", required: false }
+      - { name: "description", label: "Beskrivning", widget: "markdown", required: false }
+      - { name: "image", label: "Bild", widget: "image", required: false, allow_multiple: false }
+      - { name: "hidden", label: "Dold", widget: "boolean", required: false, default: false }
+      - name: "imageObjectPosition"
+        label: "Bildfokus (avancerat)"
+        widget: "string"
+        required: false
+        hint: "Rör ej om du inte vet vad det gör, t.ex. 50% 30%."
 
-  - name: "prislista"
+  - name: "priser"
     label: "Prislista"
     label_singular: "Kategori"
-    description: "Priser. ID:t på varje rad måste matcha turens/tjänstens ID."
-    files:
-      - name: "prislista"
-        label: "Prislista"
-        file: "data/price-list.yml"
+    description: "Priskategorier. ID:t på varje rad måste matcha turens/tjänstens ID."
+    folder: "content/priser"
+    extension: "yml"
+    format: "yml"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{category}}"
+    fields:
+      - { name: "category", label: "Kategorinamn", widget: "string" }
+      - name: "ordning"
+        label: "Ordning"
+        widget: "number"
+        default: 100
+        hint: "Lägre nummer visas först."
+      - name: "items"
+        label: "Prisrader"
+        widget: "list"
+        summary: "{{fields.name}} – {{fields.price}}"
         fields:
-          - name: "kategorier"
-            label: "Kategorier"
-            widget: "list"
-            summary: "{{fields.category}}"
-            fields:
-              - { name: "category", label: "Kategorinamn", widget: "string" }
-              - name: "items"
-                label: "Prisrader"
-                widget: "list"
-                summary: "{{fields.name}} – {{fields.price}}"
-                fields:
-                  - name: "id"
-                    label: "ID"
-                    widget: "string"
-                    hint: "Måste matcha turens/tjänstens ID för att priset ska synas i popupen."
-                  - { name: "name", label: "Namn", widget: "string" }
-                  - name: "price"
-                    label: "Pris"
-                    widget: "text"
-                    hint: "**fet** funkar. Flera rader tillåtna."
-                  - { name: "duration", label: "Längd", widget: "string", required: false }
-                  - { name: "note", label: "Notering", widget: "text", required: false }
+          - name: "id"
+            label: "ID"
+            widget: "string"
+            hint: "Måste matcha turens/tjänstens ID för att priset ska synas i popupen."
+          - { name: "name", label: "Namn", widget: "string" }
+          - name: "price"
+            label: "Pris"
+            widget: "text"
+            hint: "**fet** funkar. Flera rader tillåtna."
+          - { name: "duration", label: "Längd", widget: "string", required: false }
+          - { name: "note", label: "Notering", widget: "text", required: false }
