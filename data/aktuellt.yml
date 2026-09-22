@@ -1,15 +1,10 @@
 # GENERERAD FIL – redigera inte manuellt.
 # Källa: content/ (redigeras via /admin). Byggs av scripts/combine_content.py
 poster:
-  - title: Höstens ridgrupper – ett fåtal platser kvar
-    date: "2026-09-22"
-    text: 'Välkommen på ridning i höst (sept–okt), 1 gång per vecka i 8 veckor – 2 500 kr per termin.
-
-
-      Vi har ett fåtal platser kvar i grupperna. Kontakta oss via formuläret nedan för att boka din plats!
-
-      '
-    hidden: true
+  - title: Test
+    date: 2026-09-22
+    text: test
+    hidden: false
   - title: Höstritt med värmande fika
     date: "2026-09-22"
     text: 'Följ med på en härlig höstritt – ca fyra timmar inklusive fikapaus med värmande fika.
