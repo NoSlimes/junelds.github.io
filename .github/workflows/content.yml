@@ -1,7 +1,6 @@
 name: Build content data
 
-# Bygger ihop content/ (en fil per post, redigeras via Decap på /admin)
-# till data/*.yml (läses av sidan). Samma mönster som gallery-index.
+# Combine content/ into data/*.yml. Same pattern as the gallery index.
 
 on:
   push:

@@ -1,29 +1,19 @@
-# Decap CMS – innehållseditor för Junelds (junelds.com/admin)
-#
-# Så funkar det:
-# - Varje tur / tjänst / nyhet / priskategori är en egen fil under content/.
-#   Det ger en platt editor: samling -> post, utan mellannivåer.
-# - Vid sparning bygger en GitHub Action ihop content/ till data/*.yml
-#   (scripts/combine_content.py). Sidan läser bara data/ och märker ingen
-#   skillnad. data/*.yml är GENERERADE – redigera dem aldrig för hand.
-#
-# VIKTIGT:
-# - Fält som finns i content-filerna MÅSTE finnas med här, annars raderas
-#   de vid sparning (t.ex. imageTransform, imageObjectPosition).
-# - Ändra aldrig "id" på en befintlig post – det används för priskoppling.
-# - Filnamnen under content/ spelar ingen roll för sidan (de genereras
-#   från rubriken och kan bytas vid sparning).
+# Decap CMS content editor (junelds.com/admin).
+# Each entry is a file under content/ (flat editor).
+# Saving triggers a GitHub Action rebuilding data/*.yml (generated, do not edit).
+# Keep all content fields listed here or they get wiped on save.
+# Never change an existing "id" (used for price lookup).
+# Filenames under content/ don't matter (regenerated from title).
 
 backend:
   name: github
   repo: NoSlimes/junelds.github.io
   branch: main
-  # OAuth-server på egen VPS (nginx -> decap-oauth).
+  # Self-hosted OAuth (VPS nginx -> decap-oauth).
   base_url: https://auth.junelds.com
   auth_endpoint: /auth
 
-# Tillåt lokal redigering vid utveckling: kör "npx decap-server" lokalt
-# och välj "Work with local repository" på inloggningssidan.
+# Local dev: run "npx decap-server".
 local_backend: true
 
 site_url: https://junelds.com

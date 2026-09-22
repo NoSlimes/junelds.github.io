@@ -22,8 +22,7 @@ jobs:
         run: pwsh -NoProfile -NonInteractive -ExecutionPolicy Bypass -File .\\scripts\\generate-gallery-index.ps1
 
       - name: Commit generated index if changed
-        # Körs direkt i pwsh (default shell) – ingen kapslad -Command-sträng
-        # eftersom den expanderar $variabler sönder.
+        # Runs directly in pwsh (no nested -Command string, it breaks $variables).
         shell: pwsh
         run: |
           git config user.name 'github-actions[bot]'

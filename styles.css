@@ -413,7 +413,7 @@ body {
     .price-name { min-width: auto; }
 }
 
-/* News / Aktuellt Section - stands out with badge heading */
+/* News section */
 .news {
     padding: 60px 0;
     background-color: var(--white);

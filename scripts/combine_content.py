@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
-"""Slår ihop content-fragment (redigeras via Decap) till data/*.yml (läses av sidan).
+"""Combine content/ fragments into data/*.yml.
 
-Sanningen: content/. Output: data/. Körs lokalt eller via .github/workflows/content.yml.
-
-Regler:
-- Varje fragment i content/<grupp>/*.yml är ett objekt. Fältet "ordning"
-  styr sortering (lägst först, default sist). "ordning" skalas bort i output.
-- Output-språket är avsiktligt plain YAML (inga kommentarer utom headern).
+Source of truth: content/. Run locally or via .github/workflows/content.yml.
+"ordning" sets sort order (lowest first) and is stripped from output.
 """
 
 import re
@@ -18,22 +14,22 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content"
 DATA = ROOT / "data"
 HEADER = (
-    "# GENERERAD FIL – redigera inte manuellt.\n"
-    "# Källa: content/ (redigeras via /admin). Byggs av scripts/combine_content.py\n"
+    "# GENERATED FILE – do not edit.\n"
+    "# Source: content/. Built by scripts/combine_content.py\n"
 )
 
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
 class IndentDumper(yaml.SafeDumper):
-    """YAML-dump med indenterade listor (som dagens datafiler)."""
+    """YAML dumper with indented lists."""
 
     def increase_indent(self, flow=False, indentless=False):
         return super().increase_indent(flow, False)
 
 
 def _quoted_str(dumper, data):
-    # Datumliknande strängar måste citeras, annars parsas de som datumobjekt.
+    # Quote date-like strings so they don't parse as date objects.
     if DATE_RE.match(data):
         return dumper.represent_scalar("tag:yaml.org,2002:str", data, style='"')
     return dumper.represent_scalar("tag:yaml.org,2002:str", data)

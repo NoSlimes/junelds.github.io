@@ -1,5 +1,5 @@
-# GENERERAD FIL – redigera inte manuellt.
-# Källa: content/ (redigeras via /admin). Byggs av scripts/combine_content.py
+# GENERATED FILE – do not edit.
+# Source: content/. Built by scripts/combine_content.py
 turer:
   - id: tomteritt
     title: Tomten kommer till häst
