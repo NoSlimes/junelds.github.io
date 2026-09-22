@@ -1,15 +1,15 @@
+title: Blandad rid- och körtur
 ordning: 60
 id: blandad-tur
-image: media/blandad.jpg
-title: Blandad rid- och körtur
-summary: 'Kombinationstur: både ridning och vagn för sällskapet.'
-description: 'Om man är flera personer som vill komma ut tillsammans! Upp till tre personer kan rida, resten av sällskapet åker med i vagn dragen av en ardenner.
+summary: "Kombinationstur: både ridning och vagn för sällskapet."
+description: >
+  Om man är flera personer som vill komma ut tillsammans! Upp till tre personer
+  kan rida, resten av sällskapet åker med i vagn dragen av en ardenner.
 
 
   Viktgräns för ryttare är 130 kg (något lägre för oerfarna).
-
-  '
+image: media/blandad1.jpg
 details:
-- 'Längd: ca 1,5 timmar'
-- 'Fördelning: 6 i vagnen, 3 på hästryggen'
-imageTransform: translateY(60px)
+  - "Längd: ca 1,5 timmar"
+  - "Fördelning: 6 i vagnen, 3 på hästryggen"
+imageTransform: translateY(30px)
