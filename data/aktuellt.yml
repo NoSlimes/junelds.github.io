@@ -2,18 +2,20 @@
 # Source: content/. Built by scripts/combine_content.py
 poster:
   - title: Höstritt med värmande fika
-    date: "2026-09-22"
+    date: 2026-09-22
     text: 'Följ med på en härlig höstritt – ca fyra timmar inklusive fikapaus med värmande fika.
+
+
+      OBS! Datum är ännu inte fastställt.
 
 
       **Praktisk info:**
 
-      - Längd: ca 4 timmar inkl. fikapaus
 
-      - Anmälan: kontakta oss via formuläret nedan
+      * Längd: ca 4 timmar inkl. fikapaus
+
+      * Anmälan: kontakta oss via formuläret nedan
 
 
-      Varmt välkommen!
-
-      '
+      Varmt välkommen!'
     hidden: false
