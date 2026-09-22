@@ -74,9 +74,8 @@ turer:
       - 'Längd: ca 45 minuter'
       - 'Krav: Inga (passar alla)'
     imageTransform: translateY(20px)
-  - id: blandad-tur
-    image: media/blandad.jpg
-    title: Blandad rid- och körtur
+  - title: Blandad rid- och körtur
+    id: blandad-tur
     summary: 'Kombinationstur: både ridning och vagn för sällskapet.'
     description: 'Om man är flera personer som vill komma ut tillsammans! Upp till tre personer kan rida, resten av sällskapet åker med i vagn dragen av en ardenner.
 
@@ -84,10 +83,11 @@ turer:
       Viktgräns för ryttare är 130 kg (något lägre för oerfarna).
 
       '
+    image: media/blandad1.jpg
     details:
       - 'Längd: ca 1,5 timmar'
       - 'Fördelning: 6 i vagnen, 3 på hästryggen'
-    imageTransform: translateY(60px)
+    imageTransform: translateY(30px)
   - id: skymningsturen
     title: Skymningsturen
     summary: Sagolik skymningstur med historier och stämning.
