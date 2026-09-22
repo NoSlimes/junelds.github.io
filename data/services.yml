@@ -86,3 +86,20 @@ tjanster:
       '
     image: media/detarenhunddarframme.jpg
     imageObjectPosition: 50% 30%
+  - title: Skräddarsydd upplevelse
+    id: skraddarsydd
+    summary: Skräddarsydd upplevelse efter dina önskemål.
+    description: 'Har du en egen tanke om vad du söker för upplevelse tillsammans med våra hästar?\
+
+      Kanske vill du komma ut i naturen på en lång härlig morgontur med häst och vagn, samtidigt som du och familjen avnjuter en härlig frukost under er färd?
+
+
+      Kanske vill du fria till din stora kärlek, mitt ute i skogen, under en mysig ridtur?
+
+
+      Kanske har du andra tankar och idéer?
+
+
+      Bolla dem med oss. Vi skräddarsyr efter dina önskemål!'
+    image: media/dimma.jpg
+    hidden: false
