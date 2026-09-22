@@ -80,7 +80,7 @@ kategorier:
         note: Körutbildning, uteritter, HVB-besök, 'Bara vara'
       - id: ridgrupp
         name: Ridgrupper
-        price: 2 500 kr per termin (vår/höst)
+        price: 2 500 kr per termin, 8 tillfällen (vår/höst)
         note: 8 veckor, 1 ggr/vecka.
   - category: Lektioner
     items:
