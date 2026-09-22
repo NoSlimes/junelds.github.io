@@ -1,41 +1,34 @@
-ordning: 30
 category: Tjänster
+ordning: 30
 items:
-- id: inkorning
-  name: Inkörning av ponny och häst
-  price: 'Inkvartering: **500 kr/vecka** (inkl. moms)
-
-    Träning: **688 kr/tillfälle** (inkl. moms)
-
-    '
-  note: 'Ca 2–5 tillfällen/vecka i ca 2 månader.
-
-    Kraftfoder medtas, grovfoder ingår.
-
-    '
-- id: turkornin-event
-  name: Turkörning & Event
-  price: Skräddarsys efter dina önskemål
-  note: Bröllop, utflykter, fester m.m.
-- id: brollopskorning
-  name: Bröllopskörning
-  price: '5 000 kr **första timmen**
-
-    + 1 000 kr **per påbörjad timme**
-
-    + 25 kr × 2/mil (tur och retur)
-
-    '
-  note: Skräddarsys efter era önskemål
-- id: arbetskorning
-  name: Arbetskörning & Uppdrag
-  price: Kontakta oss för offert
-  note: Riskörning, vedutkörning m.m.
-- id: Utbildning-halsa-aktiviteter
-  name: Utbildning, Hälsa & Aktiviteter
-  price: Kontakta oss för offert
-  note: Körutbildning, uteritter, HVB-besök, 'Bara vara'
-- id: ridgrupp
-  name: Ridgrupper
-  price: 2 500 kr per termin (vår/höst)
-  note: 8 veckor, 1 ggr/vecka.
+  - id: inkorning
+    name: Inkörning av ponny och häst
+    price: |
+      Inkvartering: **500 kr/vecka** (inkl. moms)
+      Träning: **688 kr/tillfälle** (inkl. moms)
+    note: |
+      Ca 2–5 tillfällen/vecka i ca 2 månader.
+      Kraftfoder medtas, grovfoder ingår.
+  - id: turkornin-event
+    name: Turkörning & Event
+    price: Skräddarsys efter dina önskemål
+    note: Bröllop, utflykter, fester m.m.
+  - id: brollopskorning
+    name: Bröllopskörning
+    price: |
+      5 000 kr **första timmen**
+      + 1 000 kr **per påbörjad timme**
+      + 25 kr × 2/mil (tur och retur)
+    note: Skräddarsys efter era önskemål
+  - id: arbetskorning
+    name: Arbetskörning & Uppdrag
+    price: Kontakta oss för offert
+    note: Riskörning, vedutkörning m.m.
+  - id: Utbildning-halsa-aktiviteter
+    name: Utbildning, Hälsa & Aktiviteter
+    price: Kontakta oss för offert
+    note: Körutbildning, uteritter, HVB-besök, 'Bara vara'
+  - id: ridgrupp
+    name: Ridgrupper
+    price: 2 500 kr per termin, 8 tillfällen (vår/höst)
+    note: 8 veckor, 1 ggr/vecka.
