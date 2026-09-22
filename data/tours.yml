@@ -60,9 +60,8 @@ turer:
     details:
       - 'Längd: ca 1,5 timmar'
       - 'Krav: Viss ridvana krävs'
-  - id: lilla-rundan
-    image: media/detarenhunddarframme.jpg
-    title: Lilla Rundan
+  - title: Lilla Rundan
+    id: lilla-rundan
     summary: Kort och anpassningsbar 45‑minuters tur för alla nivåer.
     description: 'En ca 45 minuters ridtur. Denna runda är anpassningsbar så att den även passar den helt ovane ryttaren.
 
@@ -70,6 +69,7 @@ turer:
       Jag går då tillsammans med er. Givetvis kan även erfarna ryttare välja denna tur.
 
       '
+    image: media/3hastar.jpg
     details:
       - 'Längd: ca 45 minuter'
       - 'Krav: Inga (passar alla)'
