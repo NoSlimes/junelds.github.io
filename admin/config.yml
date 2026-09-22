@@ -10,7 +10,7 @@ backend:
   repo: NoSlimes/junelds.github.io
   branch: main
   # Self-hosted OAuth (VPS nginx -> decap-oauth).
-  base_url: https://auth.junelds.com
+  base_url: https://auth.gh.noslimes.com
   auth_endpoint: /auth
 
 # Local dev: run "npx decap-server".
