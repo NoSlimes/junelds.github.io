@@ -24,8 +24,8 @@ tjanster:
 
       '
     image: media/turkorning_event.jpg
-  - id: brollopskorning
-    title: Bröllopskörning
+  - title: Bröllopskörning
+    id: brollopskorning
     summary: Häst och vagn för er stora dag – sagolik bröllopsfärd.
     description: 'Gör er bröllopsdag oförglömlig med en storslagen entré i häst och vagn!
 
@@ -36,7 +36,7 @@ tjanster:
       Lugna trygga hästar och erfaren kusk. Vi finns i Kårestad med omnejd.
 
       '
-    image: media/s.jpg
+    image: media/fria.jpg
   - id: arbetskorning
     title: Arbetskörning & Uppdrag
     summary: Praktiskt arbete med häst i skog och mark.
