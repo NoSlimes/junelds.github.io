@@ -1,8 +1,8 @@
 # GENERATED FILE – do not edit.
 # Source: content/. Built by scripts/combine_content.py
 tjanster:
-  - id: inkorning
-    title: Inkörning av ponny och häst
+  - title: Inkörning av ponny och häst
+    id: inkorning
     summary: Professionell inkörning mot rockard eller vagn.
     description: 'Vi utbildar din häst. Det tar ca 2 månader för att få hästen körbar med rockard, och ca 2 månader till för fyrhjulsvagn.
 
@@ -13,7 +13,7 @@ tjanster:
       Du står för egen utrustning (sele, huvudlag etc). Grovfoder ingår, kraftfoder medtas.
 
       '
-    image: media/inkorning2.jpg
+    image: media/inkorning.jpg
   - id: turkornin-event
     title: Turkörning & Event
     summary: Häst och vagn för utflykt, fest och andra tillfällen.
