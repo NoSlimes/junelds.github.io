@@ -72,5 +72,14 @@
       note: "Körutbildning, uteritter, HVB-besök, 'Bara vara'"
     - id: ridgrupp
       name: "Ridgrupper"
-      price: "2 400 kr per termin (vår/höst)"
+      price: "2 500 kr per termin (vår/höst)"
       note: "8 veckor, 1 ggr/vecka."
+
+- category: "Lektioner"
+  items:
+    - id: ridlektion
+      name: "Ridlektion"
+      price: "350 kr/timme"
+    - id: korlektion
+      name: "Körlektion"
+      price: "350 kr/timme"

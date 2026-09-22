@@ -772,6 +772,65 @@
             holder.innerHTML = html;
         }
 
+        // --- Aktuellt: load and render news from data/aktuellt.yml ---
+        // Section hides itself (and its nav link) when there is nothing to show.
+        async function loadNews() {
+            try {
+                const yamlLoaded = typeof jsyaml !== 'undefined';
+                const res = await fetch(yamlLoaded ? 'data/aktuellt.yml' : 'data/aktuellt.json');
+                if (!res.ok) throw new Error('Kunde inte läsa aktuellt.yml');
+                const text = await res.text();
+                const parsed = yamlLoaded ? jsyaml.load(text) : JSON.parse(text);
+                window._newsData = Array.isArray(parsed) ? parsed : [];
+            } catch (e) {
+                console.error('Fel vid laddning av aktuellt:', e);
+                window._newsData = [];
+            }
+        }
+
+        function renderNews() {
+            const section = qs('#aktuellt');
+            const holder = qs('#news-list');
+            if (!section || !holder) return;
+            const items = (window._newsData || []).filter(n => n && n.hidden !== true && (n.title || n.text));
+            if (!items.length) {
+                section.setAttribute('hidden', '');
+                section.style.display = 'none';
+                qsa('.nav-links a[href="#aktuellt"]').forEach(a => {
+                    const li = a.closest('li');
+                    if (li) li.style.display = 'none';
+                });
+                return;
+            }
+            section.removeAttribute('hidden');
+            section.style.display = '';
+            holder.innerHTML = '';
+            const grid = document.createElement('div');
+            grid.className = 'news-grid';
+            items.forEach(n => {
+                const art = document.createElement('article');
+                art.className = 'news-card';
+                if (n.date) {
+                    const time = document.createElement('p');
+                    time.className = 'news-date';
+                    const d = new Date(n.date);
+                    time.textContent = isNaN(d) ? String(n.date) : d.toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' });
+                    art.appendChild(time);
+                }
+                const h3 = document.createElement('h3');
+                h3.textContent = n.title || 'Aktuellt';
+                art.appendChild(h3);
+                if (n.text) {
+                    const div = document.createElement('div');
+                    div.className = 'news-text';
+                    div.innerHTML = mdParse(n.text);
+                    art.appendChild(div);
+                }
+                grid.appendChild(art);
+            });
+            holder.appendChild(grid);
+        }
+
         (function loadGalleryIndex(){
             fetch('media/gallery/index.json', { cache: 'no-store' })
                 .then(res => { if (!res.ok) throw new Error('Ingen index'); return res.json(); })
@@ -781,6 +840,8 @@
 
         await loadPriceList();
         renderPriceList();
+        await loadNews();
+        renderNews();
     });
 
 })();
