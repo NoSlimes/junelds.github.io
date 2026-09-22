@@ -1,8 +1,10 @@
+title: Ridgrupper
 ordning: 60
 id: ridgrupp
-title: Ridgrupper
 summary: Ridning tillsammans i grupp - för dig som inte är sugen på ridhus
-description: 'Vi erbjuder ridgrupper under hösten (sept-okt) och våren (apr-maj), 1 ggr per vecka i 8 veckor.
+description: >
+  Vi erbjuder ridgrupper under hösten (sept-okt) och våren (apr-maj), 1 ggr per
+  vecka i 8 veckor.
 
 
   Vi går igenom allt från skötsel till hur man rider hästen. All ridning sker ute i naturen.
@@ -18,7 +20,5 @@ description: 'Vi erbjuder ridgrupper under hösten (sept-okt) och våren (apr-ma
 
 
   Har du inte kunskap att skritta självständigt går det självklart bra att boka in privatlektion i förberedelse till ridgruppen.
-
-  '
-image: media/3hastar.jpg
+image: media/detarenhunddarframme.jpg
 imageObjectPosition: 50% 30%
