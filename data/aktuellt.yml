@@ -1,14 +1,29 @@
-# Aktuellt – nyheter och aktuella händelser på Junelds
-# Lägg till poster i listan nedan för att visa dem på sidan.
-# Sektionen döljs automatiskt när listan är tom eller alla poster har hidden: true.
+# =====================================================
+# AKTUELLT – så här gör du
+# -----------------------------------------------------
+# Varje nyhet är en post i listan nedan som börjar med "- title:".
+#
+# Fält:
+#   title:  Rubrik (obligatorisk).
+#   date:   Datum som YYYY-MM-DD (valfritt). Visas som snyggt
+#           datum på sidan. Ta bort raden om inget datum ska visas.
+#   text:   Brödtext (valfri). Tom rad = nytt stycke.
+#           Markdown funkar: **fet**, *kursiv*, punktlista med "- ".
+#   hidden: true = dold/utkast (syns inte på sidan).
+#           false eller utelämnad rad = synlig.
+#
+# Sektionen "Aktuellt" på sidan döljs automatiskt när listan
+# är tom eller alla poster har hidden: true.
 #
 # Exempel:
 # - title: "Vårterminens ridgrupper är öppna för anmälan"
 #   date: "2026-03-01"
 #   text: |
 #     Anmäl dig till vårens ridgrupper (apr–maj), 1 gång per vecka i 8 veckor.
-#     Kontakta oss för att boka plats.
+#
+#     Kontakta oss via formuläret nedan för att boka plats.
 #   hidden: false
+# =====================================================
 
 - title: "Höstens ridgrupper – ett fåtal platser kvar"
   date: "2026-09-22"
@@ -17,3 +32,17 @@
 
     Vi har ett fåtal platser kvar i grupperna. Kontakta oss via formuläret nedan för att boka din plats!
   hidden: true
+
+# Utkast – sätt hidden till false när det är dags att publicera
+# (glöm inte att fylla i [DATUM/TID] och [PRIS] nedan).
+- title: "Höstritt med värmande fika"
+  date: "2026-09-22"
+  text: |
+    Följ med på en härlig höstritt – ca fyra timmar inklusive fikapaus med värmande fika.
+
+    **Praktisk info:**
+    - Längd: ca 4 timmar inkl. fikapaus
+    - Anmälan: kontakta oss via formuläret nedan
+
+    Varmt välkommen!
+  hidden: false
