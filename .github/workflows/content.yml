@@ -41,5 +41,6 @@ jobs:
             echo 'No changes to commit'
           else
             git commit -m 'chore: rebuild data from content'
+            git pull --rebase
             git push
           fi
