@@ -104,5 +104,6 @@ tjanster:
     image: media/fria2.jpeg
     images:
       - media/kalas.jpg
+      - media/kalas2.jpg
     hidden: false
     imageObjectPosition: 50% 41%
