@@ -22,11 +22,6 @@ display_url: https://junelds.com
 media_folder: "media"
 public_folder: "media"
 
-# Allow selecting/uploading multiple files at once in the media library.
-media_library:
-  config:
-    multiple: true
-
 collections:
   - name: "aktuellt"
     label: "Aktuellt"
@@ -254,6 +249,9 @@ collections:
                 widget: "image"
                 media_folder: "/media/gallery"
                 public_folder: "/media/gallery"
+                media_library:
+                  config:
+                    multiple: true
                 hint: "Nya uppladdningar hamnar i media/gallery."
               - { name: "alt", label: "Alt-text", widget: "string", required: false }
               - { name: "caption", label: "Bildtext", widget: "text", required: false }
