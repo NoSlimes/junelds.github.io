@@ -16,5 +16,8 @@ description: >-
 
 
   Bolla dem med oss. Vi skräddarsyr efter dina önskemål!
-image: media/fria.jpg
+image: media/fria2.jpeg
+fokus:
+  x: 50
+  y: 67
 hidden: false
