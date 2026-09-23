@@ -35,6 +35,9 @@ turer:
       - 'Övrigt: Vuxna följer med till fots'
   - id: ravarundan
     image: media/ravarundan.jpg
+    images:
+      - media/ravarundan.jpg
+      - media/dimma.jpg
     title: Rävarundan
     summary: Lugn 2,5‑timmars ridtur genom skog och stig.
     description: 'En ca 2,5 timmars ridtur, beroende på tempo. Denna runda kräver att ryttaren kan bemästra hästen självständigt i åtminstone skritt.

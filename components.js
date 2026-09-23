@@ -140,6 +140,86 @@
         } catch (e) {}
     }
 
+    // All images for an item: `images` list wins, then legacy `image`, then id default.
+    function getImages(data) {
+        const out = [];
+        if (data) {
+            if (Array.isArray(data.images)) {
+                data.images.forEach(item => {
+                    const src = typeof item === 'string' ? item : (item && (item.bild || item.image || item.src));
+                    if (src) out.push(resolveImagePath(src));
+                });
+            }
+            if (!out.length && data.image) out.push(resolveImagePath(data.image));
+            if (!out.length && data.id) out.push(resolveImagePath(data.id + '.jpg'));
+        }
+        return out;
+    }
+
+    // Gallery for the modal: main image + thumbnail list beside it.
+    // Thumbnails only render when there is more than one image.
+    function buildGalleryHtml(data) {
+        const srcs = getImages(data);
+        if (!srcs.length) return '';
+        const thumbs = srcs.length > 1 ? `<div class="modal-thumbs">${srcs.map((src, i) =>
+            `<button type="button" class="modal-thumb${i === 0 ? ' active' : ''}" data-src="${src}" aria-label="Visa bild ${i + 1}"><img src="${src}" alt="" loading="lazy"></button>`
+        ).join('')}</div>` : '';
+        return `<div class="modal-media"><img class="modal-main" src="${srcs[0]}" alt="">${thumbs}</div>`;
+    }
+
+    function wireGallery(rootEl) {
+        const main = rootEl.querySelector('.modal-main');
+        const thumbs = Array.from(rootEl.querySelectorAll('.modal-thumb'));
+        if (!main || !thumbs.length) return;
+        thumbs.forEach(btn => btn.addEventListener('click', () => {
+            rootEl.dataset.manual = '1';
+            stopSideAutoplay(rootEl);
+            main.src = btn.dataset.src;
+            thumbs.forEach(b => b.classList.toggle('active', b === btn));
+        }));
+    }
+
+    function stopSideAutoplay(sideEl) {
+        if (sideEl && sideEl._galleryTimer) {
+            clearInterval(sideEl._galleryTimer);
+            sideEl._galleryTimer = null;
+        }
+    }
+
+    function startSideAutoplay(sideEl) {
+        stopSideAutoplay(sideEl);
+        const main = sideEl.querySelector('.modal-main');
+        const thumbs = Array.from(sideEl.querySelectorAll('.modal-thumb'));
+        if (!main || thumbs.length < 2) return;
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        let i = thumbs.findIndex(b => b.classList.contains('active'));
+        if (i < 0) i = 0;
+        sideEl._galleryTimer = setInterval(() => {
+            if (sideEl.dataset.paused === '1' || sideEl.dataset.manual === '1') return;
+            i = (i + 1) % thumbs.length;
+            main.src = thumbs[i].dataset.src;
+            thumbs.forEach((b, j) => b.classList.toggle('active', j === i));
+        }, 4000);
+    }
+
+    // Side image panel outside the dialog. Hidden when there are no images.
+    function renderSideGallery(data) {
+        const sideEl = qs('#modal-side');
+        if (!sideEl) return;
+        stopSideAutoplay(sideEl);
+        delete sideEl.dataset.manual;
+        delete sideEl.dataset.paused;
+        sideEl.innerHTML = buildGalleryHtml(data);
+        sideEl.classList.toggle('has-images', sideEl.querySelector('.modal-main') !== null);
+        if (!sideEl._hoverWired) {
+            sideEl._hoverWired = true;
+            sideEl.addEventListener('mouseenter', () => { sideEl.dataset.paused = '1'; });
+            sideEl.addEventListener('mouseleave', () => { delete sideEl.dataset.paused; });
+        }
+        wireGallery(sideEl);
+        startSideAutoplay(sideEl);
+    }
+
     // Funktion för att bygga HTML till modalen
     function buildTourDetailsHtml(data) {
         let detailsHtml = '';
@@ -176,6 +256,7 @@
 
         titleEl.textContent = data.title;
         bodyEl.innerHTML = buildTourDetailsHtml(data);
+        renderSideGallery(data);
 
         // Koppla "Boka nu"-knappen i modalen till formuläret
         const modalBook = qs('#modal-book');
@@ -227,6 +308,12 @@
         const modal = qs('#modal');
         modal.setAttribute('aria-hidden', 'true');
         modal.classList.remove('open');
+        const sideEl = qs('#modal-side');
+        if (sideEl) {
+            stopSideAutoplay(sideEl);
+            sideEl.innerHTML = '';
+            sideEl.classList.remove('has-images');
+        }
         document.body.style.overflow = ''; // Återställ scroll
         
         // Återställ fokus
@@ -299,8 +386,9 @@
 
                 const img = document.createElement('img');
                 img.className = 'tour-image';
-                img.src = resolveImagePath(t.image || (t.id + '.jpg'));
+                img.src = getImages(t)[0] || '';
                 img.alt = t.title;
+                img.loading = 'lazy';
                 // allow JSON to control image transforms/positioning
                 applyImageTransforms(img, t);
 
@@ -386,11 +474,12 @@
                 art.setAttribute('data-service-id', s.id);
                 art.setAttribute('tabindex', '0');
 
-                // Image (match tour-card behavior)
+                // First image (match tour-card behavior)
                 const img = document.createElement('img');
                 img.className = 'tour-image';
-                img.src = resolveImagePath(s.image || (s.id + '.jpg'));
+                img.src = getImages(s)[0] || '';
                 img.alt = s.title || '';
+                img.loading = 'lazy';
                 // allow JSON to control image transforms/positioning
                 applyImageTransforms(img, s);
 
@@ -446,6 +535,7 @@
 
             titleEl.textContent = data.title || '';
             bodyEl.innerHTML = buildServiceDetailsHtml(data);
+            renderSideGallery(data);
 
             const modalBook = qs('#modal-book');
             if (modalBook) {
@@ -628,7 +718,7 @@
 
                 const img = document.createElement('img');
                 img.className = 'featured-image';
-                img.src = resolveImagePath(feat.image || (feat.id + '.jpg'));
+                img.src = getImages(feat)[0] || '';
                 img.alt = feat.title || '';
                 // allow JSON to control image transforms/positioning
                 applyImageTransforms(img, feat);

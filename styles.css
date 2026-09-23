@@ -652,6 +652,76 @@ section {
     display: block;
 }
 
+/* Modal side gallery: free-standing image panel right of the dialog */
+.modal {
+    gap: 20px;
+}
+.modal-side {
+    display: none;
+    position: relative;
+    z-index: 2;
+    width: 300px;
+    flex-shrink: 0;
+}
+.modal-side.has-images {
+    display: block;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 12px;
+}
+.modal-main {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+.modal-thumbs {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 10px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+}
+.modal-thumb {
+    border: 2px solid transparent;
+    border-radius: 6px;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.modal-thumb img {
+    width: 76px;
+    height: 58px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+}
+.modal-thumb.active {
+    border-color: var(--white);
+}
+@media (max-width: 1150px) {
+    .modal {
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow-y: auto;
+        padding: 24px 0;
+        gap: 14px;
+    }
+    .modal-content {
+        margin: 0 auto;
+    }
+    .modal-side.has-images {
+        width: min(94%, 480px);
+        margin: 0 auto;
+    }
+}
+
 /* Service cards should look like tour cards but without an image element.
    We reuse the .tour-card styles and add a small helper to match spacing. */
 .service-card {

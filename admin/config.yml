@@ -85,6 +85,23 @@ collections:
       - { name: "summary", label: "Sammanfattning (kort)", widget: "text", required: false }
       - { name: "description", label: "Beskrivning", widget: "markdown", required: false }
       - { name: "image", label: "Bild", widget: "image", required: false, allow_multiple: false }
+      - name: "images"
+        label: "Fler bilder (bildspel)"
+        widget: "list"
+        required: false
+        field: { name: "bild", label: "Bild", widget: "image" }
+        hint: "Om listan är tom används Bild ovan. Första bilden i listan visas först."
+      - name: "imageObjectPosition"
+        label: "Bildfokus"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Överkant", value: "50% 20%" }
+          - { label: "Övre tredjedel", value: "50% 30%" }
+          - { label: "Mitten", value: "50% 50%" }
+          - { label: "Nedre tredjedel", value: "50% 70%" }
+          - { label: "Underkant", value: "50% 80%" }
+        hint: "Vilken del av bilden som ska synas i kortet."
       - name: "details"
         label: "Faktarader"
         widget: "list"
@@ -95,9 +112,14 @@ collections:
       - { name: "hidden", label: "Dold", widget: "boolean", required: false, default: false }
       - name: "imageTransform"
         label: "Bildjustering (avancerat)"
-        widget: "string"
+        widget: "select"
         required: false
-        hint: "Rör ej om du inte vet vad det gör, t.ex. translateY(60px)."
+        options:
+          - { label: "Standard (ingen)", value: "" }
+          - { label: "Ner 20 px", value: "translateY(20px)" }
+          - { label: "Ner 30 px", value: "translateY(30px)" }
+          - { label: "Ner 60 px", value: "translateY(60px)" }
+        hint: "Finjustering i höjdled. Prova Bildfokus först."
 
   - name: "tjanster"
     label: "Övriga tjänster"
@@ -124,12 +146,24 @@ collections:
       - { name: "summary", label: "Sammanfattning (kort)", widget: "text", required: false }
       - { name: "description", label: "Beskrivning", widget: "markdown", required: false }
       - { name: "image", label: "Bild", widget: "image", required: false, allow_multiple: false }
-      - { name: "hidden", label: "Dold", widget: "boolean", required: false, default: false }
-      - name: "imageObjectPosition"
-        label: "Bildfokus (avancerat)"
-        widget: "string"
+      - name: "images"
+        label: "Fler bilder (bildspel)"
+        widget: "list"
         required: false
-        hint: "Rör ej om du inte vet vad det gör, t.ex. 50% 30%."
+        field: { name: "bild", label: "Bild", widget: "image" }
+        hint: "Om listan är tom används Bild ovan. Första bilden i listan visas först."
+      - name: "imageObjectPosition"
+        label: "Bildfokus"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Överkant", value: "50% 20%" }
+          - { label: "Övre tredjedel", value: "50% 30%" }
+          - { label: "Mitten", value: "50% 50%" }
+          - { label: "Nedre tredjedel", value: "50% 70%" }
+          - { label: "Underkant", value: "50% 80%" }
+        hint: "Vilken del av bilden som ska synas i kortet."
+      - { name: "hidden", label: "Dold", widget: "boolean", required: false, default: false }
 
   - name: "priser"
     label: "Prislista"
