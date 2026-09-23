@@ -24,13 +24,30 @@
     return '/' + src;
   }
 
+  function focalPoint(entry) {
+    var f = entry.getIn(['data', 'fokus']);
+    if (f && typeof f.get === 'function') {
+      var x = f.get('x');
+      var y = f.get('y');
+      if (typeof x === 'number' && typeof y === 'number') return x + '% ' + y + '%';
+    }
+    return entry.getIn(['data', 'imageObjectPosition']) || '50% 50%';
+  }
+
   function cardPreview(className) {
     return createClass({
       render: function () {
         var entry = this.props.entry;
         var img = firstImage(entry);
         return h('div', { className: className },
-          img ? h('img', { className: 'tour-image', src: pubSrc(this.props, img) }) : null,
+          img ? h('img', {
+            className: 'tour-image',
+            src: pubSrc(this.props, img),
+            style: {
+              objectPosition: focalPoint(entry),
+              transform: entry.getIn(['data', 'imageTransform']) || undefined
+            }
+          }) : null,
           h('h3', {}, entry.getIn(['data', 'title']) || ''),
           h('p', {}, entry.getIn(['data', 'summary']) || '')
         );

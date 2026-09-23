@@ -22,6 +22,11 @@ display_url: https://junelds.com
 media_folder: "media"
 public_folder: "media"
 
+# Allow selecting/uploading multiple files at once in the media library.
+media_library:
+  config:
+    multiple: true
+
 collections:
   - name: "aktuellt"
     label: "Aktuellt"
@@ -91,17 +96,14 @@ collections:
         required: false
         field: { name: "bild", label: "Bild", widget: "image" }
         hint: "Om listan är tom används Bild ovan. Första bilden i listan visas först."
-      - name: "imageObjectPosition"
+      - name: "fokus"
         label: "Bildfokus"
-        widget: "select"
+        widget: "object"
         required: false
-        options:
-          - { label: "Överkant", value: "50% 20%" }
-          - { label: "Övre tredjedel", value: "50% 30%" }
-          - { label: "Mitten", value: "50% 50%" }
-          - { label: "Nedre tredjedel", value: "50% 70%" }
-          - { label: "Underkant", value: "50% 80%" }
-        hint: "Vilken del av bilden som ska synas i kortet."
+        hint: "Dra reglagen för att välja vilken del av bilden som syns."
+        fields:
+          - { name: "x", label: "X (vänster–höger)", widget: "percent_slider", default: 50 }
+          - { name: "y", label: "Y (upp–ner)", widget: "percent_slider", default: 50 }
       - name: "details"
         label: "Faktarader"
         widget: "list"
@@ -152,17 +154,14 @@ collections:
         required: false
         field: { name: "bild", label: "Bild", widget: "image" }
         hint: "Om listan är tom används Bild ovan. Första bilden i listan visas först."
-      - name: "imageObjectPosition"
+      - name: "fokus"
         label: "Bildfokus"
-        widget: "select"
+        widget: "object"
         required: false
-        options:
-          - { label: "Överkant", value: "50% 20%" }
-          - { label: "Övre tredjedel", value: "50% 30%" }
-          - { label: "Mitten", value: "50% 50%" }
-          - { label: "Nedre tredjedel", value: "50% 70%" }
-          - { label: "Underkant", value: "50% 80%" }
-        hint: "Vilken del av bilden som ska synas i kortet."
+        hint: "Dra reglagen för att välja vilken del av bilden som syns."
+        fields:
+          - { name: "x", label: "X (vänster–höger)", widget: "percent_slider", default: 50 }
+          - { name: "y", label: "Y (upp–ner)", widget: "percent_slider", default: 50 }
       - { name: "hidden", label: "Dold", widget: "boolean", required: false, default: false }
 
   - name: "priser"
@@ -235,3 +234,26 @@ collections:
                 widget: "string"
                 required: false
                 hint: "Tomt = knappen döljs."
+
+  - name: "galleri"
+    label: "Bildgalleri"
+    label_singular: "Fil"
+    description: "Bilder i karusellen på startsidan. Dra för att ordna om."
+    files:
+      - name: "bilder"
+        label: "Bilder"
+        file: "content/galleri.yml"
+        fields:
+          - name: "bilder"
+            label: "Bilder"
+            widget: "list"
+            summary: "{{fields.caption}}"
+            fields:
+              - name: "bild"
+                label: "Bild"
+                widget: "image"
+                media_folder: "/media/gallery"
+                public_folder: "/media/gallery"
+                hint: "Nya uppladdningar hamnar i media/gallery."
+              - { name: "alt", label: "Alt-text", widget: "string", required: false }
+              - { name: "caption", label: "Bildtext", widget: "text", required: false }

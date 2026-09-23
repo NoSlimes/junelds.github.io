@@ -5,6 +5,7 @@ Source of truth: content/. Run locally or via .github/workflows/content.yml.
 "ordning" sets sort order (lowest first) and is stripped from output.
 """
 
+import json
 import re
 from pathlib import Path
 
@@ -66,10 +67,26 @@ def strip_order(item):
     return {k: v for k, v in item.items() if k != "ordning"}
 
 
+def finalize(item):
+    """Strip editor-only keys; translate fokus {x, y} to imageObjectPosition."""
+    item = strip_order(item)
+    fokus = item.pop("fokus", None)
+    if isinstance(fokus, dict):
+        try:
+            x = int(fokus.get("x", 50))
+            y = int(fokus.get("y", 50))
+        except (TypeError, ValueError):
+            x, y = 50, 50
+        x = max(0, min(100, x))
+        y = max(0, min(100, y))
+        item["imageObjectPosition"] = f"{x}% {y}%"
+    return item
+
+
 def build(wrapper_key, subdir, filename):
     items = ordered(load_fragments(subdir))
     text = HEADER + yaml.dump(
-        {wrapper_key: [strip_order(i) for i in items]},
+        {wrapper_key: [finalize(i) for i in items]},
         Dumper=IndentDumper,
         allow_unicode=True,
         width=1000,
@@ -81,11 +98,39 @@ def build(wrapper_key, subdir, filename):
     print(f"{filename}: {len(items)} poster från content/{subdir}/")
 
 
+def pretty_name(filename):
+    stem = Path(filename).stem
+    return re.sub(r"\s{2,}", " ", re.sub(r"[-_]", " ", stem)).strip()
+
+
+def build_gallery():
+    src = CONTENT / "galleri.yml"
+    items = []
+    if src.is_file():
+        with open(src, encoding="utf-8") as fh:
+            data = yaml.safe_load(fh) or {}
+        for row in data.get("bilder", []) or []:
+            if not isinstance(row, dict) or not row.get("bild"):
+                continue
+            filename = Path(row["bild"]).name
+            items.append({
+                "file": filename,
+                "alt": row.get("alt") or pretty_name(filename),
+                "caption": row.get("caption") or "",
+            })
+    out = ROOT / "media" / "gallery" / "index.json"
+    with open(out, "w", encoding="utf-8", newline="\n") as fh:
+        json.dump(items, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
+    print(f"index.json: {len(items)} bilder från content/galleri.yml")
+
+
 def main():
     build("turer", "turer", "tours.yml")
     build("tjanster", "tjanster", "services.yml")
     build("kategorier", "priser", "price-list.yml")
     build("poster", "aktuellt", "aktuellt.yml")
+    build_gallery()
 
 
 if __name__ == "__main__":
