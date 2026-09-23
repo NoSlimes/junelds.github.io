@@ -102,5 +102,7 @@ tjanster:
 
       Bolla dem med oss. Vi skräddarsyr efter dina önskemål!'
     image: media/fria2.jpeg
+    images:
+      - media/kalas.jpg
     hidden: false
-    imageObjectPosition: 50% 67%
+    imageObjectPosition: 50% 41%
