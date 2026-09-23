@@ -49,6 +49,8 @@
   });
 
   CMS.registerPreviewStyle('/styles.css');
+  // Match the on-site card width (grid columns), otherwise images stretch.
+  CMS.registerPreviewStyle('.tour-card,.news-card{max-width:380px;margin:0 auto;}', { raw: true });
   CMS.registerPreviewTemplate('turer', cardPreview('tour-card'));
   CMS.registerPreviewTemplate('tjanster', cardPreview('tour-card service-card'));
   CMS.registerPreviewTemplate('aktuellt', NewsPreview);
