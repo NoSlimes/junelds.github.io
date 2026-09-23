@@ -36,7 +36,8 @@ tjanster:
       Lugna trygga hästar och erfaren kusk. Vi finns i Kårestad med omnejd.
 
       '
-    image: media/bröllop.png
+    image: ''
+    imageObjectPosition: 52% 51%
   - id: arbetskorning
     title: Arbetskörning & Uppdrag
     summary: Praktiskt arbete med häst i skog och mark.
