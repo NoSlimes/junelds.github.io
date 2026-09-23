@@ -833,6 +833,61 @@
             holder.appendChild(grid);
         }
 
+        // --- Site settings: about text + social links from content/site.yml ---
+        async function loadSite() {
+            try {
+                const yamlLoaded = typeof jsyaml !== 'undefined';
+                const res = await fetch(yamlLoaded ? 'content/site.yml' : 'content/site.json');
+                if (!res.ok) throw new Error('Kunde inte läsa site.yml');
+                const text = await res.text();
+                window._siteData = yamlLoaded ? jsyaml.load(text) : JSON.parse(text);
+            } catch (e) {
+                console.error('Fel vid laddning av site:', e);
+                window._siteData = null;
+            }
+        }
+
+        function renderSite() {
+            const data = window._siteData;
+            if (!data) return;
+            if (data.hero) {
+                if (data.hero.rubrik) {
+                    const t = qs('#hero-title');
+                    if (t) t.textContent = data.hero.rubrik;
+                }
+                if (data.hero.text) {
+                    const p = qs('#hero-text');
+                    if (p) p.textContent = data.hero.text;
+                }
+                if (data.hero.knapp) {
+                    const b = qs('#hero-btn');
+                    if (b) b.textContent = data.hero.knapp;
+                }
+            }
+            if (data.omOss) {
+                if (data.omOss.stycke1) {
+                    const p1 = qs('#about-p1');
+                    if (p1) p1.textContent = data.omOss.stycke1;
+                }
+                if (data.omOss.stycke2) {
+                    const p2 = qs('#about-p2');
+                    if (p2) p2.textContent = data.omOss.stycke2;
+                }
+            }
+            if (data.social) {
+                const ig = qs('#social-instagram');
+                const fb = qs('#social-facebook');
+                if (ig) {
+                    if (data.social.instagram) ig.href = data.social.instagram;
+                    else ig.setAttribute('hidden', '');
+                }
+                if (fb) {
+                    if (data.social.facebook) fb.href = data.social.facebook;
+                    else fb.setAttribute('hidden', '');
+                }
+            }
+        }
+
         (function loadGalleryIndex(){
             fetch('media/gallery/index.json', { cache: 'no-store' })
                 .then(res => { if (!res.ok) throw new Error('Ingen index'); return res.json(); })
@@ -844,6 +899,8 @@
         renderPriceList();
         await loadNews();
         renderNews();
+        await loadSite();
+        renderSite();
     });
 
 })();

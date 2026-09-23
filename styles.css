@@ -550,6 +550,32 @@ body {
     opacity: 0.8;
 }
 
+/* Social links */
+.social-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.social-links a {
+    display: inline-block;
+    padding: 8px 22px;
+    border: 1px solid var(--accent-color);
+    border-radius: 999px;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.social-links a:hover {
+    background-color: var(--accent-color);
+    color: var(--footer-bg);
+}
+.social-links a[hidden] {
+    display: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav {

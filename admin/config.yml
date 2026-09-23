@@ -164,3 +164,40 @@ collections:
             hint: "**fet** funkar. Flera rader tillåtna."
           - { name: "duration", label: "Längd", widget: "string", required: false }
           - { name: "note", label: "Notering", widget: "text", required: false }
+
+  - name: "installningar"
+    label: "Inställningar"
+    label_singular: "Fil"
+    description: "Om oss-text och länkar till sociala medier."
+    files:
+      - name: "sida"
+        label: "Sidinställningar"
+        file: "content/site.yml"
+        fields:
+          - name: "hero"
+            label: "Toppsektion (hero)"
+            widget: "object"
+            fields:
+              - { name: "rubrik", label: "Rubrik", widget: "string" }
+              - { name: "text", label: "Text", widget: "text" }
+              - { name: "knapp", label: "Knapptext", widget: "string" }
+          - name: "omOss"
+            label: "Om oss"
+            widget: "object"
+            fields:
+              - { name: "stycke1", label: "Stycke 1", widget: "text" }
+              - { name: "stycke2", label: "Stycke 2", widget: "text", required: false }
+          - name: "social"
+            label: "Sociala medier"
+            widget: "object"
+            fields:
+              - name: "instagram"
+                label: "Instagram-länk"
+                widget: "string"
+                required: false
+                hint: "Tomt = knappen döljs."
+              - name: "facebook"
+                label: "Facebook-länk"
+                widget: "string"
+                required: false
+                hint: "Tomt = knappen döljs."
