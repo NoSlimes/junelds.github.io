@@ -12,7 +12,7 @@ image: media/ravarundan.jpg
 images:
   - media/ravarundan.jpg
 fokus:
-  y: 50
+  y: 16
   x: 50
 details:
   - "Längd: ca 2,5 timmar"
