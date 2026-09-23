@@ -33,12 +33,8 @@ turer:
     details:
       - 'Längd: ca 3 km'
       - 'Övrigt: Vuxna följer med till fots'
-  - id: ravarundan
-    image: media/ravarundan.jpg
-    images:
-      - media/ravarundan.jpg
-      - media/dimma.jpg
-    title: Rävarundan
+  - title: Rävarundan
+    id: ravarundan
     summary: Lugn 2,5‑timmars ridtur genom skog och stig.
     description: 'En ca 2,5 timmars ridtur, beroende på tempo. Denna runda kräver att ryttaren kan bemästra hästen självständigt i åtminstone skritt.
 
@@ -46,10 +42,14 @@ turer:
       Jag anpassar takten efter den minst kunnige ryttaren i gruppen.
 
       '
+    image: media/ravarundan.jpg
+    images:
+      - media/ravarundan.jpg
     details:
       - 'Längd: ca 2,5 timmar'
       - 'Krav: Viss ridvana krävs'
     imageTransform: translateY(60px)
+    imageObjectPosition: 50% 16%
   - title: Bergetrundan
     id: bergetrundan
     summary: Medellång tur på ca 1,5 timmar med fina vyer.
