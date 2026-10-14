@@ -15,10 +15,12 @@ items:
     note: Bröllop, utflykter, fester m.m.
   - id: brollopskorning
     name: Bröllopskörning
-    price: |
-      5 000 kr **första timmen**
+    price: >
+      8 000 kr **första timmen**
+
       + 1 000 kr **per påbörjad timme**
-      + 25 kr × 2/mil (tur och retur)
+
+      + 40 kr × 2/mil (tur och retur) på grund av separata transporter av häst och vagn.
     note: Skräddarsys efter era önskemål
   - id: arbetskorning
     name: Arbetskörning & Uppdrag
